@@ -51,13 +51,13 @@ public class UserRestController {
     public User getCurruntUser(HttpServletRequest req) {
     	String token = req.getHeader(tokenHeader).substring(7);
     	String username = jwtTokenUtil.getUsernameFromToken(token);
-    	User user = userRepo.findByMobilenumber(username);
+    	User user = userRepo.findByEmail(username);
     	return user;
     }
 
     
     @GetMapping("/allUsers")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('SUPER_ADMIN')")
     public @ResponseBody Iterable<User> getAllUsers() {
     	return userrepo.findAll().stream().filter(i-> i.getEnabled()==true).collect(Collectors.toList());
     }

@@ -9,11 +9,11 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="ak_states")
+@Table(name="ams_states")
 public class Ak_state {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	

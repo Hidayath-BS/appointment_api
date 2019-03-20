@@ -63,43 +63,7 @@ public class RegisterController {
 //	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	
-	@PostMapping("/reg_dealer")
-	public ResponseEntity<?> registerDealer(@RequestBody String registerDealer) throws JSONException {
-	JSONObject jsonobj = new JSONObject(registerDealer);
-
-	User userExists = userrepo.findByMobilenumber(jsonobj.getString("mobile_number"));
-
-	Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-	System.out.println(timestamp);
-
-
-
-	if(userExists != null) {
-
-	return new ResponseEntity<>(HttpStatus.CONFLICT);
-
-	}else {
-
-	Authority role = rolerepo.findByAuthority("DEALER");
-
-	Ak_city city = cityRepo.findByCity(jsonobj.getString("city_name"));
-
-	Ak_state state = stateRepo.findByState(jsonobj.getString("state_name"));
-
-	User reg = new User(jsonobj.getString("mobile_number"), pswdencoder.passwordEncoder().encode(jsonobj.getString("pswd")), true, jsonobj.getString("firm_name"),
-	jsonobj.getString("address_line1"), jsonobj.getString("address_line2"), jsonobj.getString("taluk_name"), jsonobj.getString("pin_code"), null, null, null, true,jsonobj.getString("email_id"), timestamp);
-
-
-	reg.setAuthorities(new HashSet<Authority>(Arrays.asList(role)));
-	reg.setState_id(state);
-	reg.setCity_id(city);
-	userrepo.save(reg);
-	return new ResponseEntity<>(HttpStatus.ACCEPTED);
-
-	}
-	}
-	
+		
 	@PostMapping("/generateOtp")
 	public ResponseEntity<?> genrateOtp(@RequestBody String body) throws JSONException {
 		JSONObject json = new JSONObject(body);

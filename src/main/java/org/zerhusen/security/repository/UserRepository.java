@@ -11,5 +11,7 @@ import org.zerhusen.model.security.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByMobilenumber(String mobilenumber);
     
+    User findByEmail(String email);
+    
     User findById(long id);
 }

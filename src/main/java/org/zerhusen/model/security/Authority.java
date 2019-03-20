@@ -5,12 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "ak_user_authority")
+@Table(name = "ams_admin_authority")
 public class Authority {
 	
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "authority", length = 50)

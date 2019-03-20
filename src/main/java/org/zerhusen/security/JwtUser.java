@@ -16,7 +16,7 @@ public class JwtUser implements UserDetails {
     private final Long id;
     private final String mobilenumber;
     
-    private final String username;
+    private final String email;
   
     private final String password;
  
@@ -27,14 +27,14 @@ public class JwtUser implements UserDetails {
     public JwtUser(
           Long id,
           String mobilenumber,
-          String username,  
+          String email,  
           String password, Collection<? extends GrantedAuthority> authorities,
           boolean enabled,
           Date lastPasswordResetDate
     ) {
         this.id = id;
         this.mobilenumber = mobilenumber;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.authorities = authorities;
         this.enabled = enabled;
@@ -46,10 +46,7 @@ public class JwtUser implements UserDetails {
         return id;
     }
 
-    @Override
-    public String getUsername() {
-        return mobilenumber;
-    }
+    
 
     @JsonIgnore
     @Override
@@ -94,4 +91,10 @@ public class JwtUser implements UserDetails {
     public Date getLastPasswordResetDate() {
         return lastPasswordResetDate;
     }
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return email;
+	}
 }

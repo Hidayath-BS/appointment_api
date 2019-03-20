@@ -1,5 +1,5 @@
 package org.zerhusen.model.security;
 
 public enum AuthorityName {
-    MANUFACTURER, DEALER , AKADMIN,AKAPP
+    SUPER_ADMIN, FRONT_DESK , DOCTOR
 }

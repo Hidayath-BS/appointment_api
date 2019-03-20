@@ -49,29 +49,6 @@
 	URL : localhost:8080/gender/
 	method : GET
 	
-4) CREATE USER PROFILE
-   
-   URL : localhost:8080/createProfile;
-   method : POST
-   body : {
-			"mobilenumber":"8867386002",
-			"firstName":"JUSTIN",
-			"lastName":"Mendonsa",
-			"dob":"2004-05-01",
-			"email":"justin@gmaail.com",
-			"addressline1":"G-#91 Bommankatte",
-			"addressline2":"Ashraya badavane",
-			"pincode":"577201",
-			"taluk":"Shimoga",
-			"stateid": "1",
-			"cityid":"1",
-			"aadharNumber":"030202030202",
-			"alternateNumber": "8867386002",
-			"bloodGroup":"O+ve",
-			"donateblood":"1",
-			"occupation":"Engineer",
-			"gender":"MALE"
-		}
 
 
 

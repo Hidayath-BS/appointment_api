@@ -16,11 +16,11 @@ public class JwtUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String mobilenumber) throws UsernameNotFoundException {
-        User user = userRepository.findByMobilenumber(mobilenumber);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email);
 
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("No user found with mobilenumber '%s'.", mobilenumber));
+            throw new UsernameNotFoundException(String.format("No user found with mobilenumber '%s'.", email));
         } else {
             return JwtUserFactory.create(user);
         }

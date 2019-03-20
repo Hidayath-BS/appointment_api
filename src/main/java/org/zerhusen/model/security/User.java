@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,8 +29,7 @@ import javax.validation.constraints.Size;
 public class User {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "mobilenumber", length = 50, unique = true)
@@ -48,37 +48,15 @@ public class User {
     @Column(name = "username", length = 50)
     private String username;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private Ak_city city_id;
 	
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "state_id")
 	private Ak_state state_id;
     
-   
-	@Column(name="address_line_1")
-	private String address_line1;
-	
-	@Column(name="address_line_2")
-	private String address_line2;
-	
-	@Column(name="taluk")
-	private String taluk;
-	
-	@Column(name="pincode")
-	private String pincode;
-	
-
-	@Column(name="target_amount")
-	private Double targetAmount;
-	
-	@Temporal(TemporalType.DATE)
-	private Date targetFrom;
-	
-	@Temporal(TemporalType.DATE)
-	private Date targetTo;
 	
     @Column(name = "ENABLED")
     private Boolean enabled;
@@ -100,16 +78,32 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "USER_AUTHORITY",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            name = "ADMIN_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "ADMIN_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private Collection<Authority> authorities;
 
+    public User() {
+		
+	}
     
     
     
+    public User(@NotNull @Size(min = 4, max = 50) String mobilenumber,
+			@NotNull @Size(min = 4, max = 100) String password, Boolean approved, String username, Boolean enabled,
+			String email, Date lastPasswordResetDate) {
+		this.mobilenumber = mobilenumber;
+		this.password = password;
+		this.approved = approved;
+		this.username = username;
+		this.enabled = enabled;
+		this.email = email;
+		this.lastPasswordResetDate = lastPasswordResetDate;
+	}
     
-    public Long getId() {
+    
+
+	public Long getId() {
         return id;
     }
 
@@ -165,30 +159,6 @@ public class User {
     
     
 
-	public String getAddress_line1() {
-		return address_line1;
-	}
-
-	public void setAddress_line1(String address_line1) {
-		this.address_line1 = address_line1;
-	}
-
-	public String getAddress_line2() {
-		return address_line2;
-	}
-
-	public void setAddress_line2(String address_line2) {
-		this.address_line2 = address_line2;
-	}
-
-	public String getTaluk() {
-		return taluk;
-	}
-
-	public void setTaluk(String taluk) {
-		this.taluk = taluk;
-	}
-
 	
 	public Ak_city getCity_id() {
 		return city_id;
@@ -206,14 +176,6 @@ public class User {
 		this.state_id = state_id;
 	}
 
-	public String getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
-	}
-
 	
 
 
@@ -225,35 +187,9 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	
-	public User() {
-		
-	}
-
-
-	public User(@NotNull @Size(min = 4, max = 50) String mobilenumber,
-			@NotNull @Size(min = 4, max = 100) String password, Boolean approved, String username, String address_line1,
-			String address_line2, String taluk, String pincode, Double targetAmount, Date targetFrom, Date targetTo,
-			Boolean enabled, String email, Date lastPasswordResetDate) {
-			super();
-			this.mobilenumber = mobilenumber;
-			this.password = password;
-			this.approved = approved;
-			this.username = username;
-			this.address_line1 = address_line1;
-			this.address_line2 = address_line2;
-			this.taluk = taluk;
-			this.pincode = pincode;
-			this.targetAmount = targetAmount;
-			this.targetFrom = targetFrom;
-			this.targetTo = targetTo;
-			this.enabled = enabled;
-			this.email = email;
-			this.lastPasswordResetDate = lastPasswordResetDate;
-			}
 	
 	
+
 	public Boolean getApproved() {
 		return approved;
 	}
@@ -262,50 +198,20 @@ public class User {
 		this.approved = approved;
 	}
 
-	public Double getTargetAmount() {
-		return targetAmount;
-	}
-
-	public void setTargetAmount(Double targetAmount) {
-		this.targetAmount = targetAmount;
-	}
-
-	public Date getTargetFrom() {
-		return targetFrom;
-	}
-
-	public void setTargetFrom(Date targetFrom) {
-		this.targetFrom = targetFrom;
-	}
-
-	public Date getTargetTo() {
-		return targetTo;
-	}
-
-	public void setTargetTo(Date targetTo) {
-		this.targetTo = targetTo;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((address_line1 == null) ? 0 : address_line1.hashCode());
-		result = prime * result + ((address_line2 == null) ? 0 : address_line2.hashCode());
 		result = prime * result + ((approved == null) ? 0 : approved.hashCode());
 		result = prime * result + ((authorities == null) ? 0 : authorities.hashCode());
 		result = prime * result + ((city_id == null) ? 0 : city_id.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((enabled == null) ? 0 : enabled.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastPasswordResetDate == null) ? 0 : lastPasswordResetDate.hashCode());
 		result = prime * result + ((mobilenumber == null) ? 0 : mobilenumber.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((pincode == null) ? 0 : pincode.hashCode());
 		result = prime * result + ((state_id == null) ? 0 : state_id.hashCode());
-		result = prime * result + ((taluk == null) ? 0 : taluk.hashCode());
-		result = prime * result + ((targetAmount == null) ? 0 : targetAmount.hashCode());
-		result = prime * result + ((targetFrom == null) ? 0 : targetFrom.hashCode());
-		result = prime * result + ((targetTo == null) ? 0 : targetTo.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -319,16 +225,6 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (address_line1 == null) {
-			if (other.address_line1 != null)
-				return false;
-		} else if (!address_line1.equals(other.address_line1))
-			return false;
-		if (address_line2 == null) {
-			if (other.address_line2 != null)
-				return false;
-		} else if (!address_line2.equals(other.address_line2))
-			return false;
 		if (approved == null) {
 			if (other.approved != null)
 				return false;
@@ -343,6 +239,11 @@ public class User {
 			if (other.city_id != null)
 				return false;
 		} else if (!city_id.equals(other.city_id))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
 			return false;
 		if (enabled == null) {
 			if (other.enabled != null)
@@ -369,35 +270,10 @@ public class User {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (pincode == null) {
-			if (other.pincode != null)
-				return false;
-		} else if (!pincode.equals(other.pincode))
-			return false;
 		if (state_id == null) {
 			if (other.state_id != null)
 				return false;
 		} else if (!state_id.equals(other.state_id))
-			return false;
-		if (taluk == null) {
-			if (other.taluk != null)
-				return false;
-		} else if (!taluk.equals(other.taluk))
-			return false;
-		if (targetAmount == null) {
-			if (other.targetAmount != null)
-				return false;
-		} else if (!targetAmount.equals(other.targetAmount))
-			return false;
-		if (targetFrom == null) {
-			if (other.targetFrom != null)
-				return false;
-		} else if (!targetFrom.equals(other.targetFrom))
-			return false;
-		if (targetTo == null) {
-			if (other.targetTo != null)
-				return false;
-		} else if (!targetTo.equals(other.targetTo))
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -410,13 +286,12 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", mobilenumber=" + mobilenumber + ", password=" + password + ", approved=" + approved
-				+ ", username=" + username + ", city_id=" + city_id + ", state_id=" + state_id + ", address_line1="
-				+ address_line1 + ", address_line2=" + address_line2 + ", taluk=" + taluk + ", pincode=" + pincode
-				+ ", targetAmount=" + targetAmount + ", targetFrom=" + targetFrom + ", targetTo=" + targetTo
-				+ ", enabled=" + enabled + ", lastPasswordResetDate=" + lastPasswordResetDate + ", authorities="
+				+ ", username=" + username + ", city_id=" + city_id + ", state_id=" + state_id + ", enabled=" + enabled
+				+ ", email=" + email + ", lastPasswordResetDate=" + lastPasswordResetDate + ", authorities="
 				+ authorities + "]";
 	}
 
+	
 	    
     
     
