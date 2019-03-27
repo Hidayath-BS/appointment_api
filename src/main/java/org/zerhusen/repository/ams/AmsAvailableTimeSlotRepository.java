@@ -7,4 +7,5 @@ import org.zerhusen.model.ams.AmsAvailableTimeSlots;
 @Repository
 public interface AmsAvailableTimeSlotRepository extends JpaRepository<AmsAvailableTimeSlots, Integer> {
 
+	public AmsAvailableTimeSlots findById(int id);
 }

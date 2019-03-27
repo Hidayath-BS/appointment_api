@@ -7,4 +7,5 @@ import org.zerhusen.model.ams.AmsAppointments;
 @Repository
 public interface AmsAppointmentsRepository extends JpaRepository<AmsAppointments, Integer> {
 
+	public AmsAppointments findById(int id);
 }
