@@ -7,4 +7,5 @@ import org.zerhusen.model.ams.AmsHospitalBranch;
 @Repository
 public interface AmsHospitalBranchRepository extends JpaRepository<AmsHospitalBranch, Integer>{
 
+	public AmsHospitalBranch findById(int id);
 }

@@ -45,6 +45,9 @@ public class AmsAvailableTimeSlots {
 	@Column(name="online_count")
 	private int onlineCount;
 	
+	@Column(name="online_limit")
+	private int onlinelimit;
+	
 	@Column(name="walkin_count")
 	private int walkinCount;
 
@@ -52,17 +55,44 @@ public class AmsAvailableTimeSlots {
 		
 	}
 
-	public AmsAvailableTimeSlots(LocalDate date, boolean online, boolean active, int onlineCount, int walkinCount) {
-		this.date = date;
-		this.online = online;
-		this.active = active;
-		this.onlineCount = onlineCount;
-		this.walkinCount = walkinCount;
-	}
+	
 
 	
 	
 	
+	public AmsAvailableTimeSlots(LocalDate date, boolean online, boolean active, int onlineCount, int onlinelimit,
+			int walkinCount) {
+		this.date = date;
+		this.online = online;
+		this.active = active;
+		this.onlineCount = onlineCount;
+		this.onlinelimit = onlinelimit;
+		this.walkinCount = walkinCount;
+	}
+
+
+
+
+
+
+	public int getOnlinelimit() {
+		return onlinelimit;
+	}
+
+
+
+
+
+
+	public void setOnlinelimit(int onlinelimit) {
+		this.onlinelimit = onlinelimit;
+	}
+
+
+
+
+
+
 	public AmsHospitalBranch getBranch() {
 		return branch;
 	}
@@ -135,6 +165,11 @@ public class AmsAvailableTimeSlots {
 		this.walkinCount = walkinCount;
 	}
 
+
+
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -146,10 +181,16 @@ public class AmsAvailableTimeSlots {
 		result = prime * result + id;
 		result = prime * result + (online ? 1231 : 1237);
 		result = prime * result + onlineCount;
+		result = prime * result + onlinelimit;
 		result = prime * result + ((slot == null) ? 0 : slot.hashCode());
 		result = prime * result + walkinCount;
 		return result;
 	}
+
+
+
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -183,6 +224,8 @@ public class AmsAvailableTimeSlots {
 			return false;
 		if (onlineCount != other.onlineCount)
 			return false;
+		if (onlinelimit != other.onlinelimit)
+			return false;
 		if (slot == null) {
 			if (other.slot != null)
 				return false;
@@ -193,14 +236,19 @@ public class AmsAvailableTimeSlots {
 		return true;
 	}
 
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "AmsAvailableTimeSlots [id=" + id + ", date=" + date + ", doctor=" + doctor + ", slot=" + slot
 				+ ", branch=" + branch + ", online=" + online + ", active=" + active + ", onlineCount=" + onlineCount
-				+ ", walkinCount=" + walkinCount + "]";
+				+ ", onlinelimit=" + onlinelimit + ", walkinCount=" + walkinCount + "]";
 	}
 
-		
+			
 	
 	
 	

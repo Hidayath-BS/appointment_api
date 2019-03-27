@@ -7,5 +7,5 @@ import org.zerhusen.model.ams.AmsReschedules;
 @Repository
 public interface AmsRescheduleRepository  extends JpaRepository<AmsReschedules, Integer> {
 
-	
+	public AmsReschedules findById(int id);
 }

@@ -75,6 +75,10 @@ public class AmsAppointments {
 	@Column(name="appointmrnt_status")
 	private byte appointmentStatus;
 	
+	
+	@Column(name="rescheduled")
+	private boolean rescheduled;
+	
 	@Column(name="active")
 	private boolean active;
 
@@ -82,10 +86,12 @@ public class AmsAppointments {
 		
 	}
 
+	
+
 	public AmsAppointments(LocalDate date, String patientName, LocalDate dateOfBirth, String gender, boolean diabetic,
 			String diabeticDuration, boolean bp, String bpDuration, boolean cardiac, String cardiacDuration,
 			boolean asthama, String asthamaDuration, String contactNumber, String emailId, byte appointmentType,
-			byte appointmentStatus, boolean active) {
+			byte appointmentStatus, boolean rescheduled, boolean active) {
 		this.date = date;
 		this.patientName = patientName;
 		this.dateOfBirth = dateOfBirth;
@@ -102,7 +108,18 @@ public class AmsAppointments {
 		this.emailId = emailId;
 		this.appointmentType = appointmentType;
 		this.appointmentStatus = appointmentStatus;
+		this.rescheduled = rescheduled;
 		this.active = active;
+	}
+
+
+
+	public boolean isRescheduled() {
+		return rescheduled;
+	}
+
+	public void setRescheduled(boolean rescheduled) {
+		this.rescheduled = rescheduled;
 	}
 
 	public int getId() {
@@ -265,6 +282,8 @@ public class AmsAppointments {
 		this.active = active;
 	}
 
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -288,9 +307,12 @@ public class AmsAppointments {
 		result = prime * result + id;
 		result = prime * result + ((patientName == null) ? 0 : patientName.hashCode());
 		result = prime * result + ((patientUser == null) ? 0 : patientUser.hashCode());
+		result = prime * result + (rescheduled ? 1231 : 1237);
 		result = prime * result + ((slot == null) ? 0 : slot.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -372,6 +394,8 @@ public class AmsAppointments {
 				return false;
 		} else if (!patientUser.equals(other.patientUser))
 			return false;
+		if (rescheduled != other.rescheduled)
+			return false;
 		if (slot == null) {
 			if (other.slot != null)
 				return false;
@@ -380,6 +404,8 @@ public class AmsAppointments {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "AmsAppointments [id=" + id + ", date=" + date + ", slot=" + slot + ", patientUser=" + patientUser
@@ -387,11 +413,11 @@ public class AmsAppointments {
 				+ diabetic + ", diabeticDuration=" + diabeticDuration + ", bp=" + bp + ", bpDuration=" + bpDuration
 				+ ", cardiac=" + cardiac + ", cardiacDuration=" + cardiacDuration + ", asthama=" + asthama
 				+ ", asthamaDuration=" + asthamaDuration + ", contactNumber=" + contactNumber + ", emailId=" + emailId
-				+ ", appointmentType=" + appointmentType + ", appointmentStatus=" + appointmentStatus + ", active="
-				+ active + "]";
+				+ ", appointmentType=" + appointmentType + ", appointmentStatus=" + appointmentStatus + ", rescheduled="
+				+ rescheduled + ", active=" + active + "]";
 	}
-	
-	
+
+		
 	
 	
 	
