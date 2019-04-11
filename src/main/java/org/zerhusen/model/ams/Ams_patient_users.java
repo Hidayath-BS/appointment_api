@@ -1,13 +1,21 @@
 package org.zerhusen.model.ams;
 
+import java.util.Collection;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.zerhusen.model.security.Ak_city;
 import org.zerhusen.model.security.Ak_state;
@@ -18,7 +26,7 @@ public class Ams_patient_users {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -56,6 +64,16 @@ public class Ams_patient_users {
 	@Column(name="patient_code")
 	private String patientCode;
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="patient_authority",
+	joinColumns= {@JoinColumn(name="patient_id", referencedColumnName="id")},
+	inverseJoinColumns= {@JoinColumn(name="authority_id", referencedColumnName="id")})
+	private Collection<AmsPatientAuthority> authority;
+	
+	@Column(name="last_password_reset_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastPasswordResetDate;
+	
 	@Column(name="active")
 	private boolean active;
 
@@ -83,6 +101,34 @@ public class Ams_patient_users {
 
 
 
+	public Collection<AmsPatientAuthority> getAuthority() {
+		return authority;
+	}
+
+
+
+
+	public void setAuthority(Collection<AmsPatientAuthority> authority) {
+		this.authority = authority;
+	}
+
+
+
+
+	public Date getLastPasswordResetDate() {
+		return lastPasswordResetDate;
+	}
+
+
+
+
+	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+		this.lastPasswordResetDate = lastPasswordResetDate;
+	}
+
+
+
+
 	public String getPatientCode() {
 		return patientCode;
 	}
@@ -97,11 +143,11 @@ public class Ams_patient_users {
 
 
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -196,6 +242,8 @@ public class Ams_patient_users {
 
 
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -203,11 +251,13 @@ public class Ams_patient_users {
 		result = prime * result + (active ? 1231 : 1237);
 		result = prime * result + ((addressLine1 == null) ? 0 : addressLine1.hashCode());
 		result = prime * result + ((addressLine2 == null) ? 0 : addressLine2.hashCode());
+		result = prime * result + ((authority == null) ? 0 : authority.hashCode());
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((lastPasswordResetDate == null) ? 0 : lastPasswordResetDate.hashCode());
 		result = prime * result + ((mobileNumber == null) ? 0 : mobileNumber.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((patientCode == null) ? 0 : patientCode.hashCode());
@@ -240,6 +290,11 @@ public class Ams_patient_users {
 				return false;
 		} else if (!addressLine2.equals(other.addressLine2))
 			return false;
+		if (authority == null) {
+			if (other.authority != null)
+				return false;
+		} else if (!authority.equals(other.authority))
+			return false;
 		if (city == null) {
 			if (other.city != null)
 				return false;
@@ -255,12 +310,20 @@ public class Ams_patient_users {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
 		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (lastPasswordResetDate == null) {
+			if (other.lastPasswordResetDate != null)
+				return false;
+		} else if (!lastPasswordResetDate.equals(other.lastPasswordResetDate))
 			return false;
 		if (mobileNumber == null) {
 			if (other.mobileNumber != null)
@@ -298,10 +361,14 @@ public class Ams_patient_users {
 		return "Ams_patient_users [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", password=" + password + ", mobileNumber=" + mobileNumber + ", addressLine1=" + addressLine1
 				+ ", addressLine2=" + addressLine2 + ", state=" + state + ", city=" + city + ", pincode=" + pincode
-				+ ", patientCode=" + patientCode + ", active=" + active + "]";
+				+ ", patientCode=" + patientCode + ", authority=" + authority + ", lastPasswordResetDate="
+				+ lastPasswordResetDate + ", active=" + active + "]";
 	}
 
-		
+
+
+
+	 		
 	
 	
 	

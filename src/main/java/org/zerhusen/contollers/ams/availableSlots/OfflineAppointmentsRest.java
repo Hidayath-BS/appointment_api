@@ -65,15 +65,25 @@ public class OfflineAppointmentsRest {
 		boolean asthama = json.getBoolean("asthma");
 		String asthamaDuration = json.getString("asthmaDuration");
 		
+		boolean eyeProblem = json.getBoolean("eyeProblem");
+		String eyeProblemDetails = json.getString("eyeprblemDetails");
+		
+		boolean eyeDrops = json.getBoolean("eyeDrops");
+		String eyeDropDetails = json.getString("eyeDropsDetails");
+		
 		AmsAvailableTimeSlots slot = slotsRepository.findById(json.getInt("slot"));
 		
 		
 		
 		if(slot != null) {
 			int offlineCount = slot.getWalkinCount();
-			AmsAppointments appointment = new AmsAppointments(date, patientName, dateOfBirth, gender, diabetic, diabeticDuration,
-					bp, bpDuration, cardiac, cardiacDuration, asthama, asthamaDuration, contactNumber, emailId, appointmentType,
-					(byte) 1, false, true);
+//			AmsAppointments appointment = new AmsAppointments(date, patientName, dateOfBirth, gender, diabetic, diabeticDuration,
+//					bp, bpDuration, cardiac, cardiacDuration, asthama, asthamaDuration, contactNumber, emailId, appointmentType,
+//					(byte) 1, false, true);
+			
+			AmsAppointments appointment = new AmsAppointments(date, patientName, dateOfBirth, gender, diabetic, diabeticDuration, bp,
+					bpDuration, cardiac, cardiacDuration, asthama, asthamaDuration, contactNumber, emailId, appointmentType,
+					(byte) 1, eyeProblem, eyeProblemDetails, eyeDrops, eyeDropDetails, false, false, true);
 			
 			
 			appointment.setSlot(slot);

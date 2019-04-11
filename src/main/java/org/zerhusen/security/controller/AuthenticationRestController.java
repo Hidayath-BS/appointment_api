@@ -54,7 +54,7 @@ public class AuthenticationRestController {
         // Return the token
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
-
+    
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String authToken = request.getHeader(tokenHeader);
