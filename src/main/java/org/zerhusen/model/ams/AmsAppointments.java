@@ -1,5 +1,6 @@
 package org.zerhusen.model.ams;
 
+
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="ams_appointments")
@@ -75,23 +77,46 @@ public class AmsAppointments {
 	@Column(name="appointmrnt_status")
 	private byte appointmentStatus;
 	
+	@Column(name="eye_prolem")
+	private boolean eyeProblem;
+	
+	@Column(name="eye_problem_details")
+	private String eyeProblemDetails;
+	
+	@Column(name="eye_drops")
+	private boolean eyeDrops;
+	
+	@Column(name="eye_drop_details")
+	private String eyeDropDetails;
+	
 	
 	@Column(name="rescheduled")
 	private boolean rescheduled;
 	
+	@Column(name="completed")
+	private boolean completed;
+	
 	@Column(name="active")
 	private boolean active;
+	
+	@Column(name="payment_received")
+	private boolean paymentReceived;
+	
+	@Column(name="payment_method")
+	private String paymentMethod;
+	
 
 	public AmsAppointments() {
 		
 	}
 
-	
 
 	public AmsAppointments(LocalDate date, String patientName, LocalDate dateOfBirth, String gender, boolean diabetic,
 			String diabeticDuration, boolean bp, String bpDuration, boolean cardiac, String cardiacDuration,
 			boolean asthama, String asthamaDuration, String contactNumber, String emailId, byte appointmentType,
-			byte appointmentStatus, boolean rescheduled, boolean active) {
+			byte appointmentStatus, boolean eyeProblem, String eyeProblemDetails, boolean eyeDrops,
+			String eyeDropDetails, boolean rescheduled, boolean completed, boolean active) {
+		super();
 		this.date = date;
 		this.patientName = patientName;
 		this.dateOfBirth = dateOfBirth;
@@ -108,9 +133,95 @@ public class AmsAppointments {
 		this.emailId = emailId;
 		this.appointmentType = appointmentType;
 		this.appointmentStatus = appointmentStatus;
+		this.eyeProblem = eyeProblem;
+		this.eyeProblemDetails = eyeProblemDetails;
+		this.eyeDrops = eyeDrops;
+		this.eyeDropDetails = eyeDropDetails;
 		this.rescheduled = rescheduled;
+		this.completed = completed;
 		this.active = active;
 	}
+
+	
+
+
+	public boolean isPaymentReceived() {
+		return paymentReceived;
+	}
+
+
+	public void setPaymentReceived(boolean paymentReceived) {
+		this.paymentReceived = paymentReceived;
+	}
+
+
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+
+	public boolean isEyeProblem() {
+		return eyeProblem;
+	}
+
+
+	public void setEyeProblem(boolean eyeProblem) {
+		this.eyeProblem = eyeProblem;
+	}
+
+
+	public String getEyeProblemDetails() {
+		return eyeProblemDetails;
+	}
+
+
+	public void setEyeProblemDetails(String eyeProblemDetails) {
+		this.eyeProblemDetails = eyeProblemDetails;
+	}
+
+
+	public boolean isEyeDrops() {
+		return eyeDrops;
+	}
+
+
+	public void setEyeDrops(boolean eyeDrops) {
+		this.eyeDrops = eyeDrops;
+	}
+
+
+	public String getEyeDropDetails() {
+		return eyeDropDetails;
+	}
+
+
+	public void setEyeDropDetails(String eyeDropDetails) {
+		this.eyeDropDetails = eyeDropDetails;
+	}
+
+
+	public boolean isCompleted() {
+		return completed;
+	}
+
+
+
+
+
+
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+
+
+
+
 
 
 
@@ -283,7 +394,6 @@ public class AmsAppointments {
 	}
 
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -297,21 +407,27 @@ public class AmsAppointments {
 		result = prime * result + ((bpDuration == null) ? 0 : bpDuration.hashCode());
 		result = prime * result + (cardiac ? 1231 : 1237);
 		result = prime * result + ((cardiacDuration == null) ? 0 : cardiacDuration.hashCode());
+		result = prime * result + (completed ? 1231 : 1237);
 		result = prime * result + ((contactNumber == null) ? 0 : contactNumber.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
 		result = prime * result + (diabetic ? 1231 : 1237);
 		result = prime * result + ((diabeticDuration == null) ? 0 : diabeticDuration.hashCode());
 		result = prime * result + ((emailId == null) ? 0 : emailId.hashCode());
+		result = prime * result + ((eyeDropDetails == null) ? 0 : eyeDropDetails.hashCode());
+		result = prime * result + (eyeDrops ? 1231 : 1237);
+		result = prime * result + (eyeProblem ? 1231 : 1237);
+		result = prime * result + ((eyeProblemDetails == null) ? 0 : eyeProblemDetails.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((patientName == null) ? 0 : patientName.hashCode());
 		result = prime * result + ((patientUser == null) ? 0 : patientUser.hashCode());
+		result = prime * result + ((paymentMethod == null) ? 0 : paymentMethod.hashCode());
+		result = prime * result + (paymentReceived ? 1231 : 1237);
 		result = prime * result + (rescheduled ? 1231 : 1237);
 		result = prime * result + ((slot == null) ? 0 : slot.hashCode());
 		return result;
 	}
-
 
 
 	@Override
@@ -350,6 +466,8 @@ public class AmsAppointments {
 				return false;
 		} else if (!cardiacDuration.equals(other.cardiacDuration))
 			return false;
+		if (completed != other.completed)
+			return false;
 		if (contactNumber == null) {
 			if (other.contactNumber != null)
 				return false;
@@ -377,6 +495,20 @@ public class AmsAppointments {
 				return false;
 		} else if (!emailId.equals(other.emailId))
 			return false;
+		if (eyeDropDetails == null) {
+			if (other.eyeDropDetails != null)
+				return false;
+		} else if (!eyeDropDetails.equals(other.eyeDropDetails))
+			return false;
+		if (eyeDrops != other.eyeDrops)
+			return false;
+		if (eyeProblem != other.eyeProblem)
+			return false;
+		if (eyeProblemDetails == null) {
+			if (other.eyeProblemDetails != null)
+				return false;
+		} else if (!eyeProblemDetails.equals(other.eyeProblemDetails))
+			return false;
 		if (gender == null) {
 			if (other.gender != null)
 				return false;
@@ -394,6 +526,13 @@ public class AmsAppointments {
 				return false;
 		} else if (!patientUser.equals(other.patientUser))
 			return false;
+		if (paymentMethod == null) {
+			if (other.paymentMethod != null)
+				return false;
+		} else if (!paymentMethod.equals(other.paymentMethod))
+			return false;
+		if (paymentReceived != other.paymentReceived)
+			return false;
 		if (rescheduled != other.rescheduled)
 			return false;
 		if (slot == null) {
@@ -405,7 +544,6 @@ public class AmsAppointments {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "AmsAppointments [id=" + id + ", date=" + date + ", slot=" + slot + ", patientUser=" + patientUser
@@ -413,10 +551,24 @@ public class AmsAppointments {
 				+ diabetic + ", diabeticDuration=" + diabeticDuration + ", bp=" + bp + ", bpDuration=" + bpDuration
 				+ ", cardiac=" + cardiac + ", cardiacDuration=" + cardiacDuration + ", asthama=" + asthama
 				+ ", asthamaDuration=" + asthamaDuration + ", contactNumber=" + contactNumber + ", emailId=" + emailId
-				+ ", appointmentType=" + appointmentType + ", appointmentStatus=" + appointmentStatus + ", rescheduled="
-				+ rescheduled + ", active=" + active + "]";
+				+ ", appointmentType=" + appointmentType + ", appointmentStatus=" + appointmentStatus + ", eyeProblem="
+				+ eyeProblem + ", eyeProblemDetails=" + eyeProblemDetails + ", eyeDrops=" + eyeDrops
+				+ ", eyeDropDetails=" + eyeDropDetails + ", rescheduled=" + rescheduled + ", completed=" + completed
+				+ ", active=" + active + ", paymentReceived=" + paymentReceived + ", paymentMethod=" + paymentMethod
+				+ "]";
 	}
 
+
+	
+
+
+
+
+
+
+	
+
+	
 		
 	
 	

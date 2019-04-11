@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 @SpringBootApplication
-public class JwtDemoApplication {
+public class AmsAdminApplicationApi {
 
 	
 	 @PostConstruct
@@ -17,6 +17,6 @@ public class JwtDemoApplication {
 	    }
 	
     public static void main(String[] args) {
-        SpringApplication.run(JwtDemoApplication.class, args);
+        SpringApplication.run(AmsAdminApplicationApi.class, args);
     }
 }
