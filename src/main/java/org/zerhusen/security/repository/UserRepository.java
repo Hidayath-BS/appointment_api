@@ -9,9 +9,9 @@ import org.zerhusen.model.security.User;
  * Created by stephan on 20.03.16.
  */
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByMobilenumber(String mobilenumber);
+    public User findByMobilenumber(String mobilenumber);
     
-    User findByEmail(String email);
+    public User findByEmail(String email);
     
-    User findById(long id);
+   public User findById(long id);
 }

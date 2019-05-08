@@ -43,7 +43,6 @@ public class OfflineAppointmentsRest {
 		
 		LocalDate date = LocalDate.parse(json.getString("date"));
 		String patientName = json.getString("fullName");
-		LocalDate dateOfBirth = LocalDate.parse(json.getString("dob"));
 		String gender = json.getString("gender");
 		
 		String  contactNumber = json.getString("mobileNumber");
@@ -60,35 +59,28 @@ public class OfflineAppointmentsRest {
 		String bpDuration = json.getString("bpDuration");
 		
 		boolean cardiac = json.getBoolean("cardiac");
-		String cardiacDuration = json.getString("cardiacDuration");
+		
 		
 		boolean asthama = json.getBoolean("asthma");
-		String asthamaDuration = json.getString("asthmaDuration");
 		
-		boolean eyeProblem = json.getBoolean("eyeProblem");
-		String eyeProblemDetails = json.getString("eyeprblemDetails");
-		
-		boolean eyeDrops = json.getBoolean("eyeDrops");
-		String eyeDropDetails = json.getString("eyeDropsDetails");
+		boolean drugAllergy = json.getBoolean("drugAllergy");
+		String drugAllergyDuration = json.getString("drugAllergyDuration");
+
+		boolean otherMedicalCondition = json.getBoolean("otherMedicalCondition");
+		String otherMedicalConditionDuration = json.getString("otherMedicalConditionDuration");		
 		
 		AmsAvailableTimeSlots slot = slotsRepository.findById(json.getInt("slot"));
 		
 		
-		
+		 
 		if(slot != null) {
 			int offlineCount = slot.getWalkinCount();
-//			AmsAppointments appointment = new AmsAppointments(date, patientName, dateOfBirth, gender, diabetic, diabeticDuration,
-//					bp, bpDuration, cardiac, cardiacDuration, asthama, asthamaDuration, contactNumber, emailId, appointmentType,
-//					(byte) 1, false, true);
-			
-			AmsAppointments appointment = new AmsAppointments(date, patientName, dateOfBirth, gender, diabetic, diabeticDuration, bp,
-					bpDuration, cardiac, cardiacDuration, asthama, asthamaDuration, contactNumber, emailId, appointmentType,
-					(byte) 1, eyeProblem, eyeProblemDetails, eyeDrops, eyeDropDetails, false, false, true);
-			
+
+			AmsAppointments appointment = new AmsAppointments(date, patientName, json.getInt("age"), gender, diabetic, diabeticDuration, bp, bpDuration, cardiac, asthama, contactNumber, emailId, appointmentType, (byte) 1, json.getBoolean("eyeProblem") , json.getString("eyeProblemExplain") , json.getBoolean("eyeDrops"), json.getString("eyeDropsExplain") , false, false, true, true, drugAllergy, drugAllergyDuration, otherMedicalCondition, otherMedicalConditionDuration, json.getString("refferedBy"), json.getString("addressLine1"), json.getString("addressLine2") , json.getString("pincode") );
 			
 			appointment.setSlot(slot);
 			
-			slot.setWalkinCount(offlineCount+1);
+			slot.setWalkinCount(offlineCount+1); 
 			
 			appointRepo.save(appointment);
 			
@@ -99,4 +91,5 @@ public class OfflineAppointmentsRest {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 	}
+
 }

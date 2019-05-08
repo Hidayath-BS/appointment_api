@@ -34,10 +34,9 @@ public class AmsDoctorSuggestion {
 
 	}
 
-	public AmsDoctorSuggestion(User doctor, Ams_Services_available service, boolean active) {
+	public AmsDoctorSuggestion(boolean active) {
 		
-		this.doctor = doctor;
-		this.service = service;
+
 		this.active = active;
 	}
 
