@@ -76,6 +76,10 @@ public class OtherAppointments {
 	joinColumns= {@JoinColumn(name="appointment_id", referencedColumnName="id")},
 	inverseJoinColumns= {@JoinColumn(name="doctor_id", referencedColumnName="id")})
 	private Collection<User> doctors;
+	
+	
+	@Column(name="completed")
+	private boolean completed;
 
 
 	public OtherAppointments() {
@@ -86,6 +90,24 @@ public class OtherAppointments {
 	
 
 	
+
+	public boolean isCompleted() {
+		return completed;
+	}
+
+
+
+
+
+
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+
+
+
+
+
 
 	public byte getRescheduled() {
 		return rescheduled;

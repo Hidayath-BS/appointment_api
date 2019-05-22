@@ -2,6 +2,7 @@ package org.zerhusen.contollers.ams.availableSlots;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
@@ -14,17 +15,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerhusen.config.EmailConfig;
 import org.zerhusen.model.ams.AmsAppointments;
+import org.zerhusen.model.ams.AmsAppointmentsForReview;
 import org.zerhusen.payload.AppointmentMail;
+import org.zerhusen.repository.ams.AmsAppointmentForReviewRepository;
 import org.zerhusen.repository.ams.AmsAppointmentsRepository;
+
+import com.google.gson.JsonObject;
 
 @RestController
 @CrossOrigin(origins="*")
@@ -38,12 +45,15 @@ public class AppointmentRest {
 	
 	@Autowired
 	private EmailConfig emailCfig;
+	
+	@Autowired
+	private AmsAppointmentForReviewRepository forReviewRepo;
 
 
 	@GetMapping("/getOnlineAppointment/{date}")
 	public Iterable<AmsAppointments> getOnlineAppointments(@PathVariable("date") String date)throws ParseException{		
         LocalDate entrydatee = LocalDate.parse(date);
-		return appointrepo.findAll().stream().filter(i->(i.isActive()==true)&&(i.getDate().equals(entrydatee)) && (i.isRescheduled()==false)&& (i.getAppointmentType()==1)).collect(Collectors.toList());
+		return appointrepo.findAll().stream().filter(i->(i.isActive()==true)&&(i.getDate().equals(entrydatee)) && i.isCompleted()==false && (i.isRescheduled()==false)&& (i.getAppointmentType()==1)).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/getMailid/{id}")
@@ -104,5 +114,170 @@ public class AppointmentRest {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 	}
+	
+//	change status request form appointments list 
+	
+	@PutMapping("/changeAppointmentStatus")
+	public ResponseEntity<?> changeAppointmentStatus(@RequestBody String statusrequest) throws JSONException{
+		JSONObject json = new JSONObject(statusrequest);
+		
+		AmsAppointments appointment = appointrepo.findById(json.getInt("appointment"));
+		boolean completed = json.getBoolean("status");
+		if(appointment != null) {
+			appointment.setCompleted(completed);
+			appointrepo.save(appointment);
+			
+			return new ResponseEntity<>(HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
+	}
+	
+	@GetMapping("/getreviewDate/{id}")
+	public AmsAppointments getreviewDate(@PathVariable int id){
+		return appointrepo.findById(id);
+	}
+	// review date
+	
+	@PutMapping("/addDate")
+    public ResponseEntity<?> addDate(@RequestBody String request)throws JSONException,ParseException, MessagingException
+    {
+    	JSONObject req = new JSONObject(request);
+    	
+    	int id = req.getInt("reviewid");
+    	
+    	LocalDate reviewDat = LocalDate.parse(req.getString("reviewDate"));
+    	
+    	AmsAppointments appDate = appointrepo.findById(id);
+    	
+    	
+    
+    	if(appDate!=null) {
+    		AmsAppointmentsForReview forReview = new AmsAppointmentsForReview(reviewDat, true);
+    		forReview.setAppointment(appDate);
+    		forReviewRepo.save(forReview);
+        	//Mail
 
+           
+    		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    	}
+    	else {
+    		return new ResponseEntity<>(HttpStatus.CONFLICT);
+    		}
+    }
+    
+    	@Scheduled(cron="0 30 10 * * *")
+    	public void remiderLogic() throws MessagingException{
+    		LocalDate weekely = LocalDate.now().plusDays(7);
+    		
+    		List<AmsAppointmentsForReview> forReviewList = forReviewRepo.findAll().stream().filter(i-> i.getReviewDate().equals(weekely) && i.isActive() == true).collect(Collectors.toList());
+    		
+    		
+    		
+   
+    		for(AmsAppointmentsForReview review: forReviewList) {
+    		
+    			 String subject ="Reminder !!!, Next Review Date on "+review.getReviewDate();
+ 	    		String text ="<html>"
+ 	    				+ "<body> <p> Hi Dear <b>"+review.getAppointment().getPatientName()+"</b> </p>"+"<p>Welcome to <b>BANGALORE NETHRALAYA</b> <br/> "
+ 	    						+ "<hr/>"
+ 	    						+ "Your Username for Login is : "+review.getAppointment().getEmailId()
+ 	    						+ "<br/>Thank You <br/>"
+ 	    						+ "Team <b>BANGALORE NETHRALAYA</b></p>" + "</body> </html>";
+	
+    			this.appointmentEmail(review.getAppointment().getEmailId(), subject, text);
+    		}
+
+    	}
+    	
+    	
+    	public void appointmentEmail(String email, String subject, String text)throws MessagingException{
+    		MimeMessage mail = javaMailSender.createMimeMessage();
+    		MimeMessageHelper helper = new MimeMessageHelper(mail, true);
+    		helper.setFrom(emailCfig.getUsername());
+    		helper.setTo(email);
+    		helper.setSubject(subject);
+    		helper.setText(text, true);
+    		javaMailSender.send(mail);
+    	}
+
+
+    	@PutMapping("/CompletedAppointment")
+    	public @ResponseBody ResponseEntity<?> CompletedAppointment(@RequestBody String cappointment) throws JSONException, MessagingException{
+    		JSONObject json = new JSONObject(cappointment);
+    		
+    		AmsAppointments capp = appointrepo.findById(json.getInt("cappointment"));
+    		
+    		if(capp != null) {
+    			capp.setCompleted(true);
+    			appointrepo.save(capp);
+    			String csubject="Thank You";
+    			String ctext="<html><body> Hi Dear "+capp.getPatientName()+" <br/>Thank you for Consulting Bangalore Nethralaya </body></html>";	
+    			registerEmaill(capp.getEmailId(),csubject,ctext);
+
+    			
+    			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    		}else {
+    			return new ResponseEntity<>(HttpStatus.CONFLICT);
+    		}
+    }
+    	public void registerEmaill(String emailId, String csubject, String ctext)throws MessagingException{
+    		MimeMessage mail = javaMailSender.createMimeMessage();
+    		MimeMessageHelper helper = new MimeMessageHelper(mail, true);
+    	helper.setFrom(emailCfig.getUsername());
+    	helper.setTo(emailId);
+    		
+    		helper.setSubject(csubject);
+    		helper.setText(ctext, true);
+    		javaMailSender.send(mail);
+    	}
+
+
+    	// get list of review Date
+    	@GetMapping("/ReviewDateList/{date}")
+    	public Iterable<AmsAppointmentsForReview> getAll(@PathVariable("date") String date){
+    		LocalDate reviewdate = LocalDate.parse(date);
+    	return forReviewRepo.findAll().stream().filter(i->i.isActive()==true && i.getReviewDate().equals(reviewdate)).collect(Collectors.toList());
+    	}
+
+    	//delete for review date
+    	@PutMapping("/deleteReviewDate")
+    	public ResponseEntity<?> deleteReviewDate(@RequestBody String reviewdate)throws JSONException{
+    	JSONObject jsonobj = new JSONObject(reviewdate);
+
+    	AmsAppointmentsForReview reviews = forReviewRepo.findById(jsonobj.getInt("reviewss"));
+
+    	if(reviews!=null) {
+    	reviews.setActive(false);
+    	// reviews.setStatus(false);
+    	forReviewRepo.save(reviews);
+    	return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    	}
+    	else {
+    	return new ResponseEntity<>(HttpStatus.CONFLICT);
+    	}
+    	}
+    	
+    	
+        //completed review date
+        @PutMapping("/CompletedReviewDate")
+    	public ResponseEntity<?> CompletedReviewDate(@RequestBody String reviewlist)throws JSONException{
+    		JSONObject jsonobj = new JSONObject(reviewlist);
+    		
+    		AmsAppointmentsForReview reviews = forReviewRepo.findById(jsonobj.getInt("reviewss"));
+    		
+    		if(reviews!=null) {
+    		
+    			boolean status = jsonobj.getBoolean("status");
+    			
+    			reviews.setCompleted(status);
+    			forReviewRepo.save(reviews);
+    			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    		}
+    		else {
+    			return new ResponseEntity<>(HttpStatus.CONFLICT);
+    		}
+    	}
+    	
+    	
 }
