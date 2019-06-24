@@ -2,6 +2,7 @@ package org.zerhusen.contollers.ams.availableSlots;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -137,6 +138,8 @@ public class AppointmentRest {
 	public AmsAppointments getreviewDate(@PathVariable int id){
 		return appointrepo.findById(id);
 	}
+	
+	
 	// review date
 	
 	@PutMapping("/addDate")
@@ -277,6 +280,34 @@ public class AppointmentRest {
     		else {
     			return new ResponseEntity<>(HttpStatus.CONFLICT);
     		}
+    	}
+    	
+        
+    	
+    	
+    	@GetMapping("/getMonthwiseAppointment/{date}")
+    	public Iterable<AmsAppointments> getMonthwiseAppointmentt(@PathVariable("date") String date)throws ParseException{		
+          LocalDate entrydatee = LocalDate.parse(date);
+    		int month = entrydatee.getMonthValue();
+    		List<AmsAppointments> appoint = new ArrayList<AmsAppointments>();
+    		Iterable<AmsAppointments> appo= appointrepo.findAll().stream().filter(i->(i.isActive()==true) && i.isCompleted()==false && (i.isRescheduled()==false)).collect(Collectors.toList());
+    	for (AmsAppointments amsAppointments : appo) {
+    		LocalDate obj = amsAppointments.getDate();
+    		int mon=obj.getMonthValue();
+    		if(mon==month) {
+    			appoint.add(amsAppointments);
+    		}
+    	}
+    	return appoint;
+    	}
+    	@PostMapping("/getBetweenDateAppiontment")
+    	public ResponseEntity<?> getBetweenDateAppiontment(@RequestBody String data) throws JSONException{
+    		JSONObject ob = new JSONObject(data);
+    		LocalDate from = LocalDate.parse(ob.getString("fromDate"));
+    		LocalDate to = LocalDate.parse(ob.getString("toDate"));
+    		List<AmsAppointments> appoin = appointrepo.findAll().stream().filter(i->(i.isActive()==true) && i.isCompleted()==false && (i.isRescheduled()==false) && i.getDate().isAfter(from) && i.getDate().isBefore(to) || i.getDate().equals(from) || i.getDate().equals(to)).collect(Collectors.toList());
+            return ResponseEntity.ok(appoin);
+    		
     	}
     	
     	

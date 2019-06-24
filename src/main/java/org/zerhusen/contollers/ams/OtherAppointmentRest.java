@@ -1,5 +1,6 @@
 package org.zerhusen.contollers.ams;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ import org.zerhusen.repository.ams.AmsHospitalBranchRepository;
 import org.zerhusen.repository.ams.AmsPatientUsersRepository;
 import org.zerhusen.repository.ams.AmsProceduresRepository;
 import org.zerhusen.repository.ams.OtherAppointmentsRepository;
+
 import org.zerhusen.security.JwtTokenUtil;
 import org.zerhusen.security.repository.AuthorityRepository;
 import org.zerhusen.security.repository.UserRepository;
@@ -281,4 +283,80 @@ public class OtherAppointmentRest {
 		User doctor = doctorRepo.findByEmail(username);
 		return otherapprepo.findAll().stream().filter(i-> i.getDoctors().contains(doctor)).collect(Collectors.toList());
 	}
+	
+	
+	@GetMapping("/getdateWiseOtherAppointment/{date}")
+	public Iterable<OtherAppointments> getdateWiseOtherAppointment(@PathVariable String date){
+		LocalDate entryDate = LocalDate.parse(date);
+	return otherapprepo.findAll().stream().filter(i->i.getAppointmentDate().equals(entryDate)).collect(Collectors.toList());
+	}
+	
+	@GetMapping("/getdateWiseOtherAppointmentdoctorWise/{date}")
+	public Iterable<OtherAppointments> getdateWiseOtherAppointmentdoctorWise(@PathVariable String date,HttpServletRequest req){
+		LocalDate entryDate = LocalDate.parse(date);
+		String token = req.getHeader(tokenHeader).substring(7);
+    	String username = jwtTokenUtil.getUsernameFromToken(token);
+    	User user = doctorRepo.findByEmail(username);
+	return otherapprepo.findAll().stream().filter(i->i.getAppointmentDate().equals(entryDate) && i.getDoctors() == user).collect(Collectors.toList());
+	}
+	
+	@GetMapping("/getMonthlyOtherAppointmentdoctorWise/{date}")
+	public Iterable<OtherAppointments> getMonthlyAppointmentdoctorWise(@PathVariable("date") String date,HttpServletRequest req)throws ParseException{		
+        LocalDate entrydatee = LocalDate.parse(date);
+        int month = entrydatee.getMonthValue();
+        String token = req.getHeader(tokenHeader).substring(7);
+    	String username = jwtTokenUtil.getUsernameFromToken(token);
+    	User user = doctorRepo.findByEmail(username);
+        List<OtherAppointments> result = new ArrayList<OtherAppointments>();
+     Iterable<OtherAppointments> app = otherapprepo.findAll().stream().filter(i->(i.isActive()==true) && i.getDoctors() == user ).collect(Collectors.toList());
+	for (OtherAppointments amsAppointments : app) {
+		LocalDate d1 = amsAppointments.getAppointmentDate();
+		int m1 = d1.getMonthValue();
+		if(m1 == month) {
+			result.add(amsAppointments);
+		}
+	}
+     
+     return result;
+	}
+	
+	@GetMapping("/getMonthlyOtherAppointment/{date}")
+	public Iterable<OtherAppointments> getMonthlyAppointment(@PathVariable("date") String date)throws ParseException{		
+        LocalDate entrydatee = LocalDate.parse(date);
+        int month = entrydatee.getMonthValue();
+        List<OtherAppointments> result = new ArrayList<OtherAppointments>();
+     Iterable<OtherAppointments> app = otherapprepo.findAll().stream().filter(i->(i.isActive()==true) ).collect(Collectors.toList());
+	for (OtherAppointments amsAppointments : app) {
+		LocalDate d1 = amsAppointments.getAppointmentDate();
+		int m1 = d1.getMonthValue();
+		if(m1 == month) {
+			result.add(amsAppointments);
+		}
+	}
+     
+     return result;
+	}
+	
+	
+	@PostMapping("/getInBetweenDatesOtherAppointment")
+	public ResponseEntity<?> getInBetweenDatesOtherAppointment(@RequestBody String data) throws JSONException{
+		JSONObject jsonObj = new JSONObject(data);
+		LocalDate fromDate = LocalDate.parse(jsonObj.getString("FromDate"));
+		LocalDate toDate = LocalDate.parse(jsonObj.getString("ToDate"));
+		List<OtherAppointments> appointments = otherapprepo.findAll().stream().filter(i->i.isActive() == true &&  i.getAppointmentDate().isAfter(fromDate) && i.getAppointmentDate().isBefore(toDate) || i.getAppointmentDate().equals(fromDate) || i.getAppointmentDate().equals(toDate)).collect(Collectors.toList());
+		return  ResponseEntity.ok(appointments);
+	} 
+	
+	@PostMapping("/getInBetweenDatesOtherAppointmentdoctorWise")
+	public ResponseEntity<?> getInBetweenDatesOtherAppointmentdoctorWise(@RequestBody String data,HttpServletRequest req) throws JSONException{
+		JSONObject jsonObj = new JSONObject(data);
+		String token = req.getHeader(tokenHeader).substring(7);
+    	String username = jwtTokenUtil.getUsernameFromToken(token);
+    	User user = doctorRepo.findByEmail(username);
+		LocalDate fromDate = LocalDate.parse(jsonObj.getString("FromDate"));
+		LocalDate toDate = LocalDate.parse(jsonObj.getString("ToDate"));
+		List<OtherAppointments> appointments = otherapprepo.findAll().stream().filter(i->i.isActive() == true && i.getDoctors() == user &&  i.getAppointmentDate().isAfter(fromDate) && i.getAppointmentDate().isBefore(toDate) || i.getAppointmentDate().equals(fromDate) || i.getAppointmentDate().equals(toDate)).collect(Collectors.toList());
+		return  ResponseEntity.ok(appointments);
+	} 
+
 }

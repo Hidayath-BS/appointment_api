@@ -1,8 +1,10 @@
 package org.zerhusen.contollers.ams.availableSlots;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.stream.Collectors;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,42 +46,94 @@ public class AvailableSlotsRest {
 	
 	
 	
-	@GetMapping("/getAllSlots/{date}")
-	public @ResponseBody Iterable<AmsAvailableTimeSlots> getByBrnach(@PathVariable("date") String date ) throws JSONException{
+	@GetMapping("/getAllSlotsByBranch/{date}")
+	public @ResponseBody Iterable<AmsAvailableTimeSlots> getAllSlotsByBrnach(@PathVariable("date") String date ) throws JSONException{
 		LocalDate localDate = LocalDate.parse(date);
 		return availSlotRepo.findAll().stream().filter(i-> i.getDate().equals(localDate) && i.isActive()==true).collect(Collectors.toList()); 
 	}
+//	
+	@GetMapping("/getAllSlots/{date}")
+	public @ResponseBody Iterable<AmsAvailableTimeSlots> getByBrnach(@PathVariable("date") String date ) throws JSONException{
+		LocalDate localDate = LocalDate.parse(date);
+		LocalTime localTime = LocalTime.now();
+		LocalDate currDate = LocalDate.now();
+		if(localDate.equals(currDate)){
+		return availSlotRepo.findAll().stream().filter(i-> i.getDate().equals(localDate) && i.isActive()==true && i.getSlot().getStartTime().isAfter(localTime)).collect(Collectors.toList());
+		}
+		else{
+			return availSlotRepo.findAll().stream().filter(i-> i.getDate().equals(localDate) && i.isActive()==true ).collect(Collectors.toList());
+		}
+	}
+	
+	
+//	@PostMapping("/addNewAvailSlot")
+//	public ResponseEntity<?> addAvailableSlot(@RequestBody String request) throws JSONException{
+//		
+//		JSONObject json = new JSONObject(request);
+//		
+//		LocalDate date  = LocalDate.parse(json.getString("date"));
+//		
+//		boolean online = json.getBoolean("online");
+//		
+//		int onlinelimit = json.getInt("limit");
+//		
+//		User doctor = doctorRepo.findById(json.getLong("doctor"));
+//		
+//		AmsHospitalBranch branch = branchRepo.findById(json.getInt("branch"));
+//		
+//		AmsTimeSlots timeSlot = timeSlotRepo.findById(json.getInt("slot"));
+//		
+//		AmsAvailableTimeSlots availSlot = new AmsAvailableTimeSlots(date, online, true, 0, onlinelimit, 0);
+//		
+//		if(branch != null && doctor != null && timeSlot != null) {
+//			
+//			availSlot.setDoctor(doctor);
+//			
+//			availSlot.setBranch(branch);
+//			
+//			availSlot.setSlot(timeSlot);
+//			
+//			availSlotRepo.save(availSlot);
+//			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+//			
+//		}else {
+//			return new ResponseEntity<>(HttpStatus.CONFLICT);
+//		}
+//		
+//	}
+	
+	
+//	API FOR ADDING MULTIPLE AVAILABLE TIME SLOTS AT ONCE.
 	
 	@PostMapping("/addNewAvailSlot")
-	public ResponseEntity<?> addAvailableSlot(@RequestBody String request) throws JSONException{
-		
+	public ResponseEntity<?> createAvailableSlots(@RequestBody String request) throws JSONException{
 		JSONObject json = new JSONObject(request);
 		
-		LocalDate date  = LocalDate.parse(json.getString("date"));
+		LocalDate date = LocalDate.parse(json.getString("date"));
+		int branchid = json.getInt("branch");
+		int doctorId = json.getInt("doctor");
 		
-		boolean online = json.getBoolean("online");
+		JSONArray slots = json.getJSONArray("slots");
 		
-		int onlinelimit = json.getInt("limit");
+//		get Objects of branch and doctor
 		
-		User doctor = doctorRepo.findById(json.getLong("doctor"));
-		
-		AmsHospitalBranch branch = branchRepo.findById(json.getInt("branch"));
-		
-		AmsTimeSlots timeSlot = timeSlotRepo.findById(json.getInt("slot"));
-		
-		AmsAvailableTimeSlots availSlot = new AmsAvailableTimeSlots(date, online, true, 0, onlinelimit, 0);
-		
-		if(branch != null && doctor != null && timeSlot != null) {
+		AmsHospitalBranch branch = branchRepo.findById(branchid);
+		User doctor = doctorRepo.findById(doctorId);
+		if(branch != null && doctor != null) {
 			
-			availSlot.setDoctor(doctor);
-			
-			availSlot.setBranch(branch);
-			
-			availSlot.setSlot(timeSlot);
-			
-			availSlotRepo.save(availSlot);
-			return new ResponseEntity<>(HttpStatus.ACCEPTED);
-			
+			for(int i=0; i< slots.length(); i++) {
+				
+				JSONObject slotjson = (JSONObject) slots.get(i);
+				
+				AmsTimeSlots slot = timeSlotRepo.findById(slotjson.getInt("id"));
+				
+				AmsAvailableTimeSlots availableSlot = new AmsAvailableTimeSlots(date, slotjson.getBoolean("onlinestatus"), true, 0, slotjson.getInt("onlineLimit"), 0);
+				availableSlot.setBranch(branch);
+				availableSlot.setDoctor(doctor);
+				availableSlot.setSlot(slot);
+				availSlotRepo.save(availableSlot);
+			}
+			return new ResponseEntity<>(HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}

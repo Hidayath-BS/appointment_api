@@ -1,15 +1,19 @@
 package org.zerhusen.contollers.ams;
 
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,6 +21,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +31,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.zerhusen.config.EmailConfig;
 import org.zerhusen.model.ams.AmsAppointments;
 import org.zerhusen.model.ams.OtherAppointments;
+import org.zerhusen.model.security.User;
 import org.zerhusen.repository.ams.AmsAppointmentsRepository;
 import org.zerhusen.repository.ams.OtherAppointmentsRepository;
+import org.zerhusen.security.JwtTokenUtil;
+import org.zerhusen.security.repository.UserRepository;
 
 @RestController
 @RequestMapping(value = "/masters")
@@ -38,6 +47,15 @@ public class SurgicalAppointmentsRest {
 	
 	@Autowired
 	private AmsAppointmentsRepository appointmentsRepo;
+	
+	@Autowired
+	private UserRepository userrepo;
+
+    @Value("${jwt.header}")
+    private String tokenHeader;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 	
 	@Autowired
 	private JavaMailSender javamailSender;
@@ -110,4 +128,6 @@ public class SurgicalAppointmentsRest {
 		javamailSender.send(mail);;
 	}  
 
+
+	
 }
