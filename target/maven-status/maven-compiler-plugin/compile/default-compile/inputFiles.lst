@@ -1,4 +1,6 @@
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\JwtAuthorizationTokenFilter.java
+E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsAppointmentsForReview.java
+E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsPatientConversation.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\ConsultationRequestRepository.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\service\BusinessRegResponseService.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\PatientQueriesRest.java
@@ -19,6 +21,7 @@ E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsPatientAuthority.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\service\MessageService.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\service\OtpService.java
+E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsAppointmentForReviewRepository.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsProceduresRepository.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\security\Ak_state.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\config\WebSecurityConfig.java
@@ -46,7 +49,9 @@ E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\OtherAppointments.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\ConsultationRequestResponsesRepository.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\BranchController.java
+E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsPatientConversationRepository.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\AmsAdminApplicationApi.java
+E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\SurgicalAppointmentsRest.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsRescheduleRepository.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\OtherAppointmentsRepository.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\Ams_patient_users.java
@@ -56,6 +61,7 @@ E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\DashBoardRest.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\Ams_Procedures.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\repository\Rolerepository.java
+E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\AmsPatientsRest.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\AmsDoctorAppointmentController.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\AmsServicesRest.java
 E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\controller\AuthenticationException.java
