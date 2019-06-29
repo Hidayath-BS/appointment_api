@@ -358,5 +358,19 @@ public class OtherAppointmentRest {
 		List<OtherAppointments> appointments = otherapprepo.findAll().stream().filter(i->i.isActive() == true && i.getDoctors() == user &&  i.getAppointmentDate().isAfter(fromDate) && i.getAppointmentDate().isBefore(toDate) || i.getAppointmentDate().equals(fromDate) || i.getAppointmentDate().equals(toDate)).collect(Collectors.toList());
 		return  ResponseEntity.ok(appointments);
 	} 
+	
+	@GetMapping("/getfutureOtherAppointment")
+	public Iterable<OtherAppointments> getfutureOtherAppointment(){
+		LocalDate entryDate = LocalDate.now();
+	return otherapprepo.findAll().stream().filter(i->i.isActive()==true && i.getAppointmentDate().equals(entryDate)|| i.getAppointmentDate().isAfter(entryDate)).collect(Collectors.toList());
+	}
+	@GetMapping("/getFutureOtherAppointmentdoctorWise")
+	public Iterable<OtherAppointments>getFutureOtherAppointmentdoctorWise(HttpServletRequest req){
+		LocalDate entryDate = LocalDate.now();
+		String token = req.getHeader(tokenHeader).substring(7);
+    	String username = jwtTokenUtil.getUsernameFromToken(token);
+    	User user = doctorRepo.findByEmail(username);
+	return otherapprepo.findAll().stream().filter(i->i.isActive()==true && i.getAppointmentDate().equals(entryDate)|| i.getAppointmentDate().isAfter(entryDate) && i.getDoctors() == user).collect(Collectors.toList());
+	}
 
 }

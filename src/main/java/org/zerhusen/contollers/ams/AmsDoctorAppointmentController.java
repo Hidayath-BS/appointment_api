@@ -98,7 +98,16 @@ public class AmsDoctorAppointmentController {
         return ResponseEntity.ok(appoin);
 		
 	}
+	
+	@GetMapping("/getfuturemyappointments")
+	public Iterable<AmsAppointments> getFutureMyAppointments(HttpServletRequest req)throws ParseException{		
+		String token = req.getHeader(tokenHeader).substring(7);
+    	String username = jwtTokenUtil.getUsernameFromToken(token);
+    	User user = userRepo.findByEmail(username);
+		LocalDate entrydate = LocalDate.now();
+		return appointmentRepo.findAll().stream().filter(i->(i.isActive()==true)&& i.getSlot().getDoctor() == user &&(i.getDate().isAfter(entrydate)|| i.getDate().equals(entrydate))  && (i.isRescheduled()==false)).collect(Collectors.toList());
+	}
+
 
 	
-
 }

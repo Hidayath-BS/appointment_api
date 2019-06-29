@@ -1,10 +1,13 @@
 package org.zerhusen.contollers.ams;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,10 +57,7 @@ public class RescheduleAppointmentRest {
 	}
 
 
-	@GetMapping("/rescheduledAppointmentList")
-	public Iterable<AmsReschedules> rescheduledAppointmentList() {
-		return appointmentResheduleRepo.findAll().stream().filter(i->i.isActive()== true).collect(Collectors.toList());
-	}
+	
 
 	@PutMapping("/deleteResheduledAppointment")
 	public @ResponseBody ResponseEntity<?> deleteAppointment(@RequestBody String appointment) throws JSONException{
@@ -133,5 +133,44 @@ public class RescheduleAppointmentRest {
 		helper.setText(text, true);
 		javamailSender.send(mail);
 	}
+	
+	@GetMapping("/rescheduledAppointmentList")
+	public Iterable<AmsReschedules> rescheduledAppointmentList() {
+	LocalDate date = LocalDate.now();
+	return appointmentResheduleRepo.findAll().stream().filter(i->i.isActive()== true && i.getDate().isAfter(date) || i.getDate().equals(date)).collect(Collectors.toList());
+	}
+	@GetMapping("/getResheduledAppointmentsOnDate/{date}")
+	public Iterable<AmsReschedules> getResheduledAppointmentsOnDate(@PathVariable String date){
+	LocalDate datee = LocalDate.parse(date);
+	return appointmentResheduleRepo.findAll().stream().filter(i->i.isActive()==true && i.getDate().equals(datee)).collect(Collectors.toList());
+	}
+
+	@GetMapping("/getMonthwiseResheduledAppiontment/{date}")
+	public Iterable<AmsReschedules> getMonthwiseReshudledAppiontment(@PathVariable String date,HttpServletRequest req){
+	LocalDate entrydatee = LocalDate.parse(date);
+	int month = entrydatee.getMonthValue();
+	List<AmsReschedules> result = new ArrayList<AmsReschedules>();
+	Iterable<AmsReschedules> app = appointmentResheduleRepo.findAll().stream().filter(i->(i.isActive()==true) ).collect(Collectors.toList());
+	for (AmsReschedules amsReshedules : app) {
+	LocalDate d1 = amsReshedules.getDate();
+	int m1 = d1.getMonthValue();
+	if(m1 == month) {
+	result.add(amsReshedules);
+	}
+	}
+
+	return result;
+	}
+
+	@PostMapping("/getInBetweenDatesResheduledAppointment")
+	public ResponseEntity<?> getInBetweenDatesResheduledAppointment(@RequestBody String data) throws JSONException{
+	JSONObject jsonObj = new JSONObject(data);
+	LocalDate fromDate = LocalDate.parse(jsonObj.getString("FromDate"));
+	LocalDate toDate = LocalDate.parse(jsonObj.getString("ToDate"));
+	List<AmsReschedules> appointments = appointmentResheduleRepo.findAll().stream().filter(i->i.isActive() == true && i.getDate().isAfter(fromDate) && i.getDate().isBefore(toDate) || i.getDate().equals(fromDate) || i.getDate().equals(toDate)).collect(Collectors.toList());
+	return ResponseEntity.ok(appointments);
+
+	}
+	
 
 }
