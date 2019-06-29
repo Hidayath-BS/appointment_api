@@ -310,5 +310,11 @@ public class AppointmentRest {
     		
     	}
     	
+    	@GetMapping("/getfutureappointments")
+    	public Iterable<AmsAppointments> getAppointments()throws ParseException{		
+            LocalDate entrydate = LocalDate.now();
+    		return appointrepo.findAll().stream().filter(i->(i.isActive()==true)&&(i.getDate().equals(entrydate)||i.getDate().isAfter(entrydate)) && (i.isRescheduled()==false)).collect(Collectors.toList());
+    	}
+    	
     	
 }
