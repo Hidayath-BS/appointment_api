@@ -46,5 +46,37 @@ public String sendSmsOtp(int otp,String phonenumber) {
 		
 	}
 
+
+public String sendMessage(String msg, String phoneNumber) {
+	try {
+		String apiKey = "apikey=" + "cHIBKogDvXw-THeA5L66gcgmlcJb7YZpmRiZMEwgHX";
+		String message = "&message=" + msg;
+		String sender = "&sender=" + "BNGNET";
+		String numbers = "&numbers=" + "91"+phoneNumber;
+		
+		// Send data
+		HttpURLConnection conn = (HttpURLConnection) new URL("https://api.textlocal.in/send/?").openConnection();
+		String data = apiKey + numbers + message + sender;
+		conn.setDoOutput(true);
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+		conn.getOutputStream().write(data.getBytes("UTF-8"));
+		final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+		final StringBuffer stringBuffer = new StringBuffer();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			stringBuffer.append(line);
+		}
+		rd.close();
+		System.out.println(stringBuffer.toString());
+		return stringBuffer.toString();
+	}catch(Exception e) {
+		System.out.println("Error SMS "+e);
+		return "Error "+e;
+	
+		
+	}
+}
+
 	
 }

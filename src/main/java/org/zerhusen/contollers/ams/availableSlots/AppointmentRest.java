@@ -28,9 +28,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.zerhusen.config.EmailConfig;
 import org.zerhusen.model.ams.AmsAppointments;
 import org.zerhusen.model.ams.AmsAppointmentsForReview;
+import org.zerhusen.model.ams.AmsHospitalBranch;
 import org.zerhusen.payload.AppointmentMail;
 import org.zerhusen.repository.ams.AmsAppointmentForReviewRepository;
 import org.zerhusen.repository.ams.AmsAppointmentsRepository;
+import org.zerhusen.repository.ams.AmsHospitalBranchRepository;
+import org.zerhusen.service.MessageService;
 
 import com.google.gson.JsonObject;
 
@@ -49,6 +52,12 @@ public class AppointmentRest {
 	
 	@Autowired
 	private AmsAppointmentForReviewRepository forReviewRepo;
+	
+	@Autowired
+	private MessageService messageService;
+	
+	@Autowired
+	private AmsHospitalBranchRepository branchRepo;
 
 
 	@GetMapping("/getOnlineAppointment/{date}")
@@ -159,8 +168,14 @@ public class AppointmentRest {
     		AmsAppointmentsForReview forReview = new AmsAppointmentsForReview(reviewDat, true);
     		forReview.setAppointment(appDate);
     		forReviewRepo.save(forReview);
-        	//Mail
-
+        	//Message
+    		
+    		String phoneNumber = appDate.getContactNumber();
+    		 
+    		 String msg = "Dear "+appDate.getPatientName()+",\r\n" + 
+    		 		"a gentle reminder on your follow up visit will be on "+reviewDat+".";
+    		
+    		messageService.sendMessage(msg, phoneNumber);
            
     		return new ResponseEntity<>(HttpStatus.ACCEPTED);
     	}
@@ -314,6 +329,20 @@ public class AppointmentRest {
     	public Iterable<AmsAppointments> getAppointments()throws ParseException{		
             LocalDate entrydate = LocalDate.now();
     		return appointrepo.findAll().stream().filter(i->(i.isActive()==true)&&(i.getDate().equals(entrydate)||i.getDate().isAfter(entrydate)) && (i.isRescheduled()==false)).collect(Collectors.toList());
+    	}
+    	
+    	@GetMapping("/getfutureappointmentsBranchWise/{id}")
+    	public Iterable<AmsAppointments> getfutureappointmentsBranchWise(@PathVariable int id)throws ParseException{
+    		AmsHospitalBranch branch = branchRepo.findById(id);
+            LocalDate entrydate = LocalDate.now();
+    		return appointrepo.findAll().stream().filter(i->(i.isActive()==true)&&(i.getDate().equals(entrydate)||i.getDate().isAfter(entrydate)) && (i.isRescheduled()==false) && i.getSlot().getBranch() == branch).collect(Collectors.toList());
+    	}
+    	
+    	@GetMapping("/getAppointmentbranchwise/{date}/{id}")
+    	public Iterable<AmsAppointments> getAppointmentbranchwise(@PathVariable("date") String date,@PathVariable int id)throws ParseException{		
+            LocalDate entrydate = LocalDate.parse(date);
+            AmsHospitalBranch branch = branchRepo.findById(id);
+    		return appointrepo.findAll().stream().filter(i->(i.isActive()==true)&&(i.getDate().equals(entrydate)) && (i.isRescheduled()==false) && i.getSlot().getBranch() == branch).collect(Collectors.toList());
     	}
     	
     	
