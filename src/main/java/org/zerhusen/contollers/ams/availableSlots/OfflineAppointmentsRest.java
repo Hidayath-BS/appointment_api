@@ -18,6 +18,7 @@ import org.zerhusen.model.ams.AmsAppointments;
 import org.zerhusen.model.ams.AmsAvailableTimeSlots;
 import org.zerhusen.repository.ams.AmsAppointmentsRepository;
 import org.zerhusen.repository.ams.AmsAvailableTimeSlotRepository;
+import org.zerhusen.service.MessageService;
 
 @RestController
 @RequestMapping("/offlineAppointments")
@@ -30,6 +31,9 @@ public class OfflineAppointmentsRest {
 	
 	@Autowired
 	public AmsAppointmentsRepository appointRepo;
+	
+	@Autowired
+	public MessageService msgService;
 	
 	@GetMapping("/getlist")
 	public Iterable<AmsAppointments> getAllAppointments(){
@@ -85,6 +89,14 @@ public class OfflineAppointmentsRest {
 			appointRepo.save(appointment);
 			
 			slotsRepository.save(slot);
+			
+			
+			String msg = "Dear "+patientName+", \r\n" + 
+					"Thank you for booking an appointment with us, Please wait for your turn.\r\n" + 
+					"Team Bangalore Nethralaya.";
+			
+			
+			msgService.sendMessage(msg, contactNumber);
 			
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		}else {

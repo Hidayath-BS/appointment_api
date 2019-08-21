@@ -28,10 +28,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.zerhusen.config.EmailConfig;
 import org.zerhusen.model.ams.AmsAppointments;
 import org.zerhusen.model.ams.AmsAvailableTimeSlots;
+import org.zerhusen.model.ams.AmsHospitalBranch;
 import org.zerhusen.model.ams.AmsReschedules;
 import org.zerhusen.repository.ams.AmsAppointmentsRepository;
 import org.zerhusen.repository.ams.AmsAvailableTimeSlotRepository;
+import org.zerhusen.repository.ams.AmsHospitalBranchRepository;
 import org.zerhusen.repository.ams.AmsRescheduleRepository;
+import org.zerhusen.service.MessageService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -50,6 +53,12 @@ public class RescheduleAppointmentRest {
 	
 	@Autowired
 	private EmailConfig emailConfig;
+	
+	@Autowired
+	private MessageService messageService;
+	
+	@Autowired
+	private AmsHospitalBranchRepository branchRepo;
 
 	@GetMapping("getAppointmentList")
 	public Iterable<AmsAppointments> appointmentList(){
@@ -111,6 +120,16 @@ public class RescheduleAppointmentRest {
 					+ "</body></html>";
 			this.rescehduleEmail(email, subject, text);
 			
+			String msg = "Dear "+appointmentId.getPatientName()+",\r\n" + 
+					"Your appointment is rescheduled to "+availableTimeSlot.getSlot().getStartTime()+" on "+availableTimeSlot.getDate()+", with "+availableTimeSlot.getDoctor().getUsername()+",\r\n" + 
+					"Bangalore Nethralaya "+availableTimeSlot.getBranch().getBranchName()+" branch.";
+			String phoneNumber = appointmentId.getContactNumber();
+			
+			if(phoneNumber != null && phoneNumber != "") {
+				messageService.sendMessage(msg, phoneNumber);
+			}
+
+			
 			appointmentId.setRescheduled(true);
 			appointmentRepo.save(appointmentId);
 			AmsReschedules resheduleAppointment = new AmsReschedules(date, true, (byte) 1);
@@ -133,6 +152,8 @@ public class RescheduleAppointmentRest {
 		helper.setText(text, true);
 		javamailSender.send(mail);
 	}
+	
+	
 	
 	@GetMapping("/rescheduledAppointmentList")
 	public Iterable<AmsReschedules> rescheduledAppointmentList() {
@@ -170,6 +191,20 @@ public class RescheduleAppointmentRest {
 	List<AmsReschedules> appointments = appointmentResheduleRepo.findAll().stream().filter(i->i.isActive() == true && i.getDate().isAfter(fromDate) && i.getDate().isBefore(toDate) || i.getDate().equals(fromDate) || i.getDate().equals(toDate)).collect(Collectors.toList());
 	return ResponseEntity.ok(appointments);
 
+	}
+	
+	@GetMapping("/futurerescheduledAppointmentList/{id}")
+	public Iterable<AmsReschedules> futurerescheduledAppointmentList(@PathVariable int id) {
+	LocalDate date = LocalDate.now();
+	AmsHospitalBranch branch = branchRepo.findById(id);
+	return appointmentResheduleRepo.findAll().stream().filter(i->i.isActive()== true && i.getDate().isAfter(date) || i.getDate().equals(date) && i.getAppointment().getSlot().getBranch()==branch).collect(Collectors.toList());
+	}
+	
+	@GetMapping("/getResheduledAppointmentsOnDatebranchWise/{date}/{id}")
+	public Iterable<AmsReschedules> getResheduledAppointmentsOnDatebranchWise(@PathVariable String date,@PathVariable int id){
+	LocalDate datee = LocalDate.parse(date);
+	AmsHospitalBranch branch = branchRepo.findById(id);
+	return appointmentResheduleRepo.findAll().stream().filter(i->i.isActive()==true && i.getDate().equals(datee) && i.getAppointment().getSlot().getBranch() == branch).collect(Collectors.toList());
 	}
 	
 

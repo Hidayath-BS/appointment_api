@@ -44,6 +44,7 @@ import org.zerhusen.repository.ams.OtherAppointmentsRepository;
 import org.zerhusen.security.JwtTokenUtil;
 import org.zerhusen.security.repository.AuthorityRepository;
 import org.zerhusen.security.repository.UserRepository;
+import org.zerhusen.service.MessageService;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -89,6 +90,9 @@ public class OtherAppointmentRest {
 	
 	@Autowired
 	private EmailConfig emailConfig;
+	
+	@Autowired
+	private MessageService messageService;
 
 	
 	@GetMapping("/getOtherAppointment")
@@ -183,12 +187,21 @@ public class OtherAppointmentRest {
 			
 			otherAppointment.setDoctors(doctorsList);
 			
+			String msg = "Dear "+json.getString("fullName")+",\r\n" + 
+					"your "+procedure.getProcedures()+" is scheduled on "+otherAppointment.getAppointmentDate()+" at "+otherAppointment.getAppointmentTime()+" at our "+otherAppointment.getBranch().getBranchName()+" branch,\r\n" + 
+					"Kindly carry your investigation reports along with your file.";
+			
+			String phoneNumber = json.getString("mobileNumber");
+			
 			
 			
 			if(patient != 0) {
 				Ams_patient_users patientUser = userrepo.findById(patient);
 				
 				otherAppointment.setPatient(patientUser);
+				
+				
+				messageService.sendMessage(msg, phoneNumber);
 				
 				this.sendMailtoPatients(patientUser.getEmail(), json.getString("fullName"), doctorsList, branch, procedure, json.getString("mrdNumber"), appointmentDate, appointmentTime);
 				
@@ -200,6 +213,7 @@ public class OtherAppointmentRest {
 				
 				this.sendMailtoPatients(json.getString("emailId"), json.getString("fullName"), doctorsList, branch, procedure, json.getString("mrdNumber"), appointmentDate, appointmentTime);
 				otherapprepo.save(otherAppointment);
+				messageService.sendMessage(msg, phoneNumber);
 				return new ResponseEntity<>(HttpStatus.ACCEPTED);
 			}
 		}else {
@@ -227,7 +241,7 @@ public class OtherAppointmentRest {
 					+ "PROCEDURE SUGGESTED : <b> "+ procedure.getProcedures() +" </b> <br/>"
 					+ "DATE & TIME OF APPOINTMENT : <b> "+ date +" - "+time+" </b> <br/>"
 					+ "BRANCH NAME : <b> "+ branch.getBranchName() +" </b> </p> <hr/>"
-					+ "<h5>OTHER DOCTORS AT PROCEDURE</h5>"
+					+ "<h5>DOCTORS AT PROCEDURE</h5>"
 					+ "<ul>"+docListing+ "</ul>"
 					+ "</body>"
 					+ "</html>";
@@ -260,7 +274,7 @@ public class OtherAppointmentRest {
 				+ "PROCEDURE SUGGESTED : <b> "+ procedure.getProcedures() +" </b> <br/>"
 				+ "DATE & TIME OF APPOINTMENT : <b> "+ date +" - "+time+" </b> <br/>"
 				+ "BRANCH NAME : <b> "+ branch.getBranchName() +" </b> </p> <hr/>"
-				+ "<h5>OTHER DOCTORS AT PROCEDURE</h5>"
+				+ "<h5> DOCTORS AT PROCEDURE</h5>"
 				+ "<ul>"+doctorsList+ "</ul>"
 				+ "</body>"
 				+ "</html>";
