@@ -128,7 +128,7 @@ public class AvailableSlotsRest {
 				
 				AmsTimeSlots slot = timeSlotRepo.findById(slotjson.getInt("id"));
 				
-				AmsAvailableTimeSlots availableSlot = new AmsAvailableTimeSlots(date, slotjson.getBoolean("onlinestatus"), true, 0, slotjson.getInt("onlineLimit"), 0);
+				AmsAvailableTimeSlots availableSlot = new AmsAvailableTimeSlots(date, (byte) slotjson.getInt("onlinestatus"), true, 0, slotjson.getInt("onlineLimit"), 0);
 				availableSlot.setBranch(branch);
 				availableSlot.setDoctor(doctor);
 				availableSlot.setSlot(slot);
