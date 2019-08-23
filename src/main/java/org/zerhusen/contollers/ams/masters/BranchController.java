@@ -34,12 +34,17 @@ public class BranchController {
 	
 	
 //	To add a branch
+	@SuppressWarnings("unused")
 	@PostMapping(value="/addBranch")
 	public ResponseEntity<?> addNewBranch(@RequestBody String branch)throws JSONException{
 		JSONObject jsonobj= new JSONObject(branch);
-		AmsHospitalBranch branch1 = new AmsHospitalBranch(jsonobj.getString("branchName"),true);
-		branchRepo.save(branch1);
-		return new ResponseEntity<>(HttpStatus.OK);
+		
+			AmsHospitalBranch branch1 = new AmsHospitalBranch(jsonobj.getString("branchName"),true);
+			branchRepo.save(branch1);
+			return new ResponseEntity<>(HttpStatus.OK);
+		
+		
+		
 	}
 
 	 @GetMapping("/getBranch/{id}")
