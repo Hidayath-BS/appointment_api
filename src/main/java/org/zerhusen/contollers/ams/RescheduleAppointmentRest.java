@@ -90,9 +90,8 @@ public class RescheduleAppointmentRest {
 	@GetMapping(value="/getavailableTimeSlot/{id}")
 	public Iterable<AmsAvailableTimeSlots> availableSlots(@PathVariable("id") int id)  {
 		AmsAppointments appointment = appointmentRepo.findById(id);
-		byte online = appointment.getAppointmentType();
 		return availableTimeSlotRepo.findAll().stream().filter(i->
-				(i.getBranch()== appointment.getSlot().getBranch())&&(i.isActive()== true)  ).collect(Collectors.toList()); 
+				(i.getBranch()== appointment.getSlot().getBranch())&&(i.isActive()== true) && i.getOnline() == appointment.getAppointmentType()  ).collect(Collectors.toList()); 
 	}
 
 	@GetMapping("/getDatee/{id}")

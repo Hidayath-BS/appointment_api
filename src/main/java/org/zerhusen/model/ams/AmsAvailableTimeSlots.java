@@ -37,7 +37,7 @@ public class AmsAvailableTimeSlots {
 	private AmsHospitalBranch branch;
 	
 	@Column(name="online")
-	private boolean online;
+	private byte online;
 	
 	@Column(name="active")
 	private boolean active;
@@ -60,7 +60,7 @@ public class AmsAvailableTimeSlots {
 	
 	
 	
-	public AmsAvailableTimeSlots(LocalDate date, boolean online, boolean active, int onlineCount, int onlinelimit,
+	public AmsAvailableTimeSlots(LocalDate date, byte online, boolean active, int onlineCount, int onlinelimit,
 			int walkinCount) {
 		this.date = date;
 		this.online = online;
@@ -133,11 +133,11 @@ public class AmsAvailableTimeSlots {
 		this.slot = slot;
 	}
 
-	public boolean isOnline() {
+	public byte getOnline() {
 		return online;
 	}
 
-	public void setOnline(boolean online) {
+	public void setOnline(byte online) {
 		this.online = online;
 	}
 
@@ -179,7 +179,7 @@ public class AmsAvailableTimeSlots {
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((doctor == null) ? 0 : doctor.hashCode());
 		result = prime * result + id;
-		result = prime * result + (online ? 1231 : 1237);
+		result = prime * result + online;
 		result = prime * result + onlineCount;
 		result = prime * result + onlinelimit;
 		result = prime * result + ((slot == null) ? 0 : slot.hashCode());
@@ -248,6 +248,12 @@ public class AmsAvailableTimeSlots {
 				+ ", onlinelimit=" + onlinelimit + ", walkinCount=" + walkinCount + "]";
 	}
 
+
+
+
+
+
+	
 			
 	
 	
