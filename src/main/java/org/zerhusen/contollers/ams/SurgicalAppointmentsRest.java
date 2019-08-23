@@ -66,7 +66,7 @@ public class SurgicalAppointmentsRest {
 	@GetMapping("/oterAppointmentsPending")
 	public Iterable<OtherAppointments> oterAppointmentsPending(){
 		LocalDate date =LocalDate.now();
-		return otherAppointmentsRepo.findAll().stream().filter(i->i.getAppointmentDate().compareTo(date)>0 && i.isCompleted() == false).collect(Collectors.toList());
+		return otherAppointmentsRepo.findAll().stream().filter(i->i.getAppointmentDate().isBefore(date) && i.isCompleted() == false && i.isActive() == true).collect(Collectors.toList());
 	}
 	
 	@Scheduled(cron="0 25 10 * * *")

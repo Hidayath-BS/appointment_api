@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -138,6 +139,22 @@ public class AvailableSlotsRest {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 		
+	}
+	
+	@PutMapping("/deleteAvailableTimeSlot")
+	public ResponseEntity<?> deleteAvailableTimeSlot(@RequestBody String request) throws JSONException
+	{
+		JSONObject json = new JSONObject(request);
+		AmsAvailableTimeSlots availableSlot = availSlotRepo.findById(json.getInt("slots"));
+		
+		if(availableSlot!=null) {
+			availableSlot.setActive(false);
+			availSlotRepo.save(availableSlot);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
 	}
 	
 }
