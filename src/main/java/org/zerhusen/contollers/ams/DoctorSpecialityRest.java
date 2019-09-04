@@ -1,6 +1,7 @@
 package org.zerhusen.contollers.ams;
 
 import java.text.ParseException;
+import java.util.stream.Collectors;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,16 +45,12 @@ public class DoctorSpecialityRest {
 	{
 		JSONObject jsonobj = new JSONObject(request);
 		
-		Ams_Services_available serve = serrepo.findById(jsonobj.getInt("services"));
-		
 	    User doc = userrepo.findById(jsonobj.getLong("doctors"));
 	    
-	    AmsDoctorSuggestion docsug = new AmsDoctorSuggestion(true);
+	    AmsDoctorSuggestion docsug = new AmsDoctorSuggestion(jsonobj.getString("speciality"), true);
 	    
 	    docsug.setDoctor(doc);
-	    
-	    docsug.setService(serve);
-	    
+	       
 	    docrepo.save(docsug);
 	    
 	    return new ResponseEntity<>(HttpStatus.ACCEPTED);
@@ -61,7 +59,23 @@ public class DoctorSpecialityRest {
 	
 	@GetMapping("/getAllDoctorSpeciality")
 	public Iterable<AmsDoctorSuggestion> getDoctorSuggestion(){
-		return docrepo.findAll();
+		return docrepo.findAll().stream().filter(i->i.isActive()==true).collect(Collectors.toList());
+	}
+	
+	@PutMapping("/deleteSpeciality")
+	public ResponseEntity<?> deleteDoctorSpeciality(@RequestBody String req)throws JSONException
+	{
+		JSONObject jsonobj = new JSONObject(req);
+		
+		AmsDoctorSuggestion specialty = docrepo.findById(jsonobj.getInt("speciality"));
+		
+		if(specialty!=null) {
+			specialty.setActive(false);
+			docrepo.save(specialty);
+			 return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		}else {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
 	}
 	
 
