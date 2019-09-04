@@ -88,10 +88,20 @@ public class RescheduleAppointmentRest {
 
 
 	@GetMapping(value="/getavailableTimeSlot/{id}")
-	public Iterable<AmsAvailableTimeSlots> availableSlots(@PathVariable("id") int id)  {
-		AmsAppointments appointment = appointmentRepo.findById(id);
-		return availableTimeSlotRepo.findAll().stream().filter(i->
-				(i.getBranch()== appointment.getSlot().getBranch())&&(i.isActive()== true) && i.getOnline() == appointment.getAppointmentType()  ).collect(Collectors.toList()); 
+	public Iterable<AmsAvailableTimeSlots> availableSlots(@PathVariable("id") int id) {
+	AmsAppointments appointment = appointmentRepo.findById(id);
+	Iterable<AmsAvailableTimeSlots> slots = availableTimeSlotRepo.findAll().stream().filter(i->
+	(i.getBranch()== appointment.getSlot().getBranch())&&(i.isActive()== true) ).collect(Collectors.toList()); 
+	List<AmsAvailableTimeSlots> result = new ArrayList<AmsAvailableTimeSlots>();
+	for (AmsAvailableTimeSlots slot : slots) {
+	if(appointment.getAppointmentType() == 1 && slot.getOnline()==1){
+	result.add(slot);
+	}
+	else if(((appointment.getAppointmentType() == 2) || (appointment.getAppointmentType() == 3)) && (slot.getOnline()==0)){
+	result.add(slot);
+	}
+	}
+	return result;
 	}
 
 	@GetMapping("/getDatee/{id}")

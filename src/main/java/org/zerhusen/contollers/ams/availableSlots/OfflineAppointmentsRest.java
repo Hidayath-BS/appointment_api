@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -80,8 +81,20 @@ public class OfflineAppointmentsRest {
 		 
 		if(slot != null) {
 			int offlineCount = slot.getWalkinCount();
-
-			AmsAppointments appointment = new AmsAppointments(date, patientName, json.getInt("age"), gender, diabetic, diabeticDuration, bp, bpDuration, cardiac, asthama, contactNumber, emailId, appointmentType, (byte) 1, json.getBoolean("eyeProblem") , json.getString("eyeProblemExplain") , json.getBoolean("eyeDrops"), json.getString("eyeDropsExplain") , false, false, true, true, drugAllergy, drugAllergyDuration, otherMedicalCondition, otherMedicalConditionDuration, json.getString("refferedBy"), json.getString("addressLine1"), json.getString("addressLine2") , json.getString("pincode") );
+			String mrdNumber = json.getString("mrdNumber");
+			if(mrdNumber.equals("null")) {
+				AmsAppointments appointment = new AmsAppointments(date, patientName, json.getInt("age"), gender, diabetic, diabeticDuration, bp, bpDuration, cardiac, asthama, contactNumber, emailId, appointmentType, (byte) 1, json.getBoolean("eyeProblem") , json.getString("eyeProblemExplain") , json.getBoolean("eyeDrops"), json.getString("eyeDropsExplain") , false, false, true, true, drugAllergy, drugAllergyDuration, otherMedicalCondition, otherMedicalConditionDuration, json.getString("refferedBy"), json.getString("addressLine1"), json.getString("addressLine2") , json.getString("pincode"));
+				appointment.setSlot(slot);
+				
+				slot.setWalkinCount(offlineCount+1); 
+				
+				appointRepo.save(appointment);
+				
+				slotsRepository.save(slot);
+				
+			}
+			else {
+			AmsAppointments appointment = new AmsAppointments(date, patientName, json.getInt("age"), gender, diabetic, diabeticDuration, bp, bpDuration, cardiac, asthama, contactNumber, emailId, appointmentType, (byte) 1, json.getBoolean("eyeProblem") , json.getString("eyeProblemExplain") , json.getBoolean("eyeDrops"), json.getString("eyeDropsExplain") , false, false, true, true, drugAllergy, drugAllergyDuration, otherMedicalCondition, otherMedicalConditionDuration, json.getString("refferedBy"), json.getString("addressLine1"), json.getString("addressLine2") , json.getString("pincode"),mrdNumber);
 			
 			appointment.setSlot(slot);
 			
@@ -91,13 +104,13 @@ public class OfflineAppointmentsRest {
 			
 			slotsRepository.save(slot);
 			
-			
+			}
 			String msg = "Dear "+patientName+", \r\n" + 
 					"Thank you for booking an appointment with us, Please wait for your turn.\r\n" + 
 					"Team Bangalore Nethralaya.";
 			
 			
-			msgService.sendMessage(msg, contactNumber);
+			msgService.sendMessage(msg, contactNumber); 
 			
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 		}else {
@@ -109,6 +122,23 @@ public class OfflineAppointmentsRest {
 	public AmsAppointments getReviewAppointments(@PathVariable("id") int id)
 	{
 		return appointRepo.findById(id);
+	}
+	
+	@PutMapping("/submitusersMRDNumber")
+	public ResponseEntity<?> submitusersMRDNumber(@RequestBody String data) throws JSONException{
+		JSONObject jsonObj = new JSONObject(data);
+		int id = jsonObj.getInt("patientId");		
+		AmsAppointments appointment = appointRepo.findById(id);
+		String mrdNumber = jsonObj.getString("usersMRDNumber");
+		if(appointment != null) {	
+			if(mrdNumber != " ") {
+		appointment.setMrdNumber(mrdNumber);
+		appointRepo.save(appointment);
+		return new ResponseEntity<>(HttpStatus.OK);
+			}else
+				return new ResponseEntity<>(HttpStatus.CONFLICT);
+	}else
+		return new ResponseEntity<>(HttpStatus.CONFLICT); 
 	}
 
 }

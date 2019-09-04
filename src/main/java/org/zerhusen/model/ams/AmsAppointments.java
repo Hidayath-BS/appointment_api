@@ -36,6 +36,9 @@ public class AmsAppointments {
 	@Column(name="patient_name")
 	private String patientName;
 	
+	@Column(name="mrd_number")
+	private String mrdNumber;
+	
 	@Column(name="age")
 	private int age;
 	
@@ -136,8 +139,47 @@ public class AmsAppointments {
 			String contactNumber, String emailId, byte appointmentType, byte appointmentStatus, boolean eyeProblem,
 			String eyeProblemDetails, boolean eyeDrops, String eyeDropDetails, boolean rescheduled, boolean completed,
 			boolean active, boolean paymentReceived, boolean drugAllergy, String drugAllergyDuration,
-			boolean otherMedicalCondition, String otherMedicalConditionDuration, String refferedBy, String addressLine1, String addressLine2, String pincode ) {
-		super();
+			boolean otherMedicalCondition, String otherMedicalConditionDuration, String refferedBy, String addressLine1, String addressLine2, String pincode, String mrdNumber ) {
+		this.date = date;
+		
+		this.patientName = patientName;
+		this.age = age;
+		this.gender = gender;
+		this.diabetic = diabetic;
+		this.diabeticDuration = diabeticDuration;
+		this.bp = bp;
+		this.bpDuration = bpDuration;
+		this.cardiac = cardiac;
+		this.asthama = asthama;
+		this.contactNumber = contactNumber;
+		this.emailId = emailId;
+		this.appointmentType = appointmentType;
+		this.appointmentStatus = appointmentStatus;
+		this.eyeProblem = eyeProblem;
+		this.eyeProblemDetails = eyeProblemDetails;
+		this.eyeDrops = eyeDrops;
+		this.eyeDropDetails = eyeDropDetails;
+		this.rescheduled = rescheduled;
+		this.completed = completed;
+		this.active = active;
+		this.paymentReceived = paymentReceived;
+		this.drugAllergy = drugAllergy;
+		this.drugAllergyDuration = drugAllergyDuration;
+		this.otherMedicalCondition = otherMedicalCondition;
+		this.otherMedicalConditionDuration = otherMedicalConditionDuration;
+		this.refferedBy = refferedBy;
+		this.addressLine1 = addressLine1;
+		this.addressLine2 = addressLine2;
+		this.pincode = pincode;
+		this.mrdNumber = mrdNumber;
+	}
+
+	public AmsAppointments(LocalDate date, String patientName, int age, String gender,
+			boolean diabetic, String diabeticDuration, boolean bp, String bpDuration, boolean cardiac, boolean asthama,
+			String contactNumber, String emailId, byte appointmentType, byte appointmentStatus, boolean eyeProblem,
+			String eyeProblemDetails, boolean eyeDrops, String eyeDropDetails, boolean rescheduled, boolean completed,
+			boolean active, boolean paymentReceived, boolean drugAllergy, String drugAllergyDuration,
+			boolean otherMedicalCondition, String otherMedicalConditionDuration, String refferedBy, String addressLine1, String addressLine2, String pincode) {
 		this.date = date;
 		
 		this.patientName = patientName;
@@ -173,9 +215,11 @@ public class AmsAppointments {
 
 
 
+
 	public int getId() {
 		return id;
 	}
+
 
 
 
@@ -185,9 +229,11 @@ public class AmsAppointments {
 
 
 
+
 	public LocalDate getDate() {
 		return date;
 	}
+
 
 
 
@@ -197,9 +243,11 @@ public class AmsAppointments {
 
 
 
+
 	public AmsAvailableTimeSlots getSlot() {
 		return slot;
 	}
+
 
 
 
@@ -209,9 +257,11 @@ public class AmsAppointments {
 
 
 
+
 	public Ams_patient_users getPatientUser() {
 		return patientUser;
 	}
+
 
 
 
@@ -220,9 +270,12 @@ public class AmsAppointments {
 	}
 
 
+
+
 	public String getPatientName() {
 		return patientName;
 	}
+
 
 
 
@@ -232,9 +285,25 @@ public class AmsAppointments {
 
 
 
+
+	public String getMrdNumber() {
+		return mrdNumber;
+	}
+
+
+
+
+	public void setMrdNumber(String mrdNumber) {
+		this.mrdNumber = mrdNumber;
+	}
+
+
+
+
 	public int getAge() {
 		return age;
 	}
+
 
 
 
@@ -244,9 +313,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getGender() {
 		return gender;
 	}
+
 
 
 
@@ -256,9 +327,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isDiabetic() {
 		return diabetic;
 	}
+
 
 
 
@@ -268,9 +341,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getDiabeticDuration() {
 		return diabeticDuration;
 	}
+
 
 
 
@@ -280,9 +355,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isBp() {
 		return bp;
 	}
+
 
 
 
@@ -292,9 +369,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getBpDuration() {
 		return bpDuration;
 	}
+
 
 
 
@@ -304,9 +383,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isCardiac() {
 		return cardiac;
 	}
+
 
 
 
@@ -316,9 +397,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isAsthama() {
 		return asthama;
 	}
+
 
 
 
@@ -328,9 +411,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getContactNumber() {
 		return contactNumber;
 	}
+
 
 
 
@@ -340,9 +425,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getEmailId() {
 		return emailId;
 	}
+
 
 
 
@@ -352,9 +439,11 @@ public class AmsAppointments {
 
 
 
+
 	public byte getAppointmentType() {
 		return appointmentType;
 	}
+
 
 
 
@@ -364,9 +453,11 @@ public class AmsAppointments {
 
 
 
+
 	public byte getAppointmentStatus() {
 		return appointmentStatus;
 	}
+
 
 
 
@@ -376,9 +467,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isEyeProblem() {
 		return eyeProblem;
 	}
+
 
 
 
@@ -388,9 +481,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getEyeProblemDetails() {
 		return eyeProblemDetails;
 	}
+
 
 
 
@@ -400,9 +495,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isEyeDrops() {
 		return eyeDrops;
 	}
+
 
 
 
@@ -412,9 +509,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getEyeDropDetails() {
 		return eyeDropDetails;
 	}
+
 
 
 
@@ -424,9 +523,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isRescheduled() {
 		return rescheduled;
 	}
+
 
 
 
@@ -436,9 +537,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isCompleted() {
 		return completed;
 	}
+
 
 
 
@@ -448,9 +551,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isActive() {
 		return active;
 	}
+
 
 
 
@@ -460,9 +565,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isPaymentReceived() {
 		return paymentReceived;
 	}
+
 
 
 
@@ -472,9 +579,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getPaymentMethod() {
 		return paymentMethod;
 	}
+
 
 
 
@@ -484,9 +593,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isDrugAllergy() {
 		return drugAllergy;
 	}
+
 
 
 
@@ -496,9 +607,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getDrugAllergyDuration() {
 		return drugAllergyDuration;
 	}
+
 
 
 
@@ -508,9 +621,11 @@ public class AmsAppointments {
 
 
 
+
 	public boolean isOtherMedicalCondition() {
 		return otherMedicalCondition;
 	}
+
 
 
 
@@ -520,9 +635,11 @@ public class AmsAppointments {
 
 
 
+
 	public String getOtherMedicalConditionDuration() {
 		return otherMedicalConditionDuration;
 	}
+
 
 
 
@@ -532,9 +649,18 @@ public class AmsAppointments {
 
 
 
+
 	public String getRefferedBy() {
 		return refferedBy;
 	}
+
+
+
+
+	public void setRefferedBy(String refferedBy) {
+		this.refferedBy = refferedBy;
+	}
+
 
 
 
@@ -580,13 +706,6 @@ public class AmsAppointments {
 
 
 
-	public void setRefferedBy(String refferedBy) {
-		this.refferedBy = refferedBy;
-	}
-
-
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -615,6 +734,7 @@ public class AmsAppointments {
 		result = prime * result + ((eyeProblemDetails == null) ? 0 : eyeProblemDetails.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((mrdNumber == null) ? 0 : mrdNumber.hashCode());
 		result = prime * result + (otherMedicalCondition ? 1231 : 1237);
 		result = prime * result
 				+ ((otherMedicalConditionDuration == null) ? 0 : otherMedicalConditionDuration.hashCode());
@@ -722,6 +842,11 @@ public class AmsAppointments {
 			return false;
 		if (id != other.id)
 			return false;
+		if (mrdNumber == null) {
+			if (other.mrdNumber != null)
+				return false;
+		} else if (!mrdNumber.equals(other.mrdNumber))
+			return false;
 		if (otherMedicalCondition != other.otherMedicalCondition)
 			return false;
 		if (otherMedicalConditionDuration == null) {
@@ -772,29 +897,22 @@ public class AmsAppointments {
 	@Override
 	public String toString() {
 		return "AmsAppointments [id=" + id + ", date=" + date + ", slot=" + slot + ", patientUser=" + patientUser
-				+ ", patientName=" + patientName + ", age=" + age + ", gender=" + gender + ", diabetic=" + diabetic
-				+ ", diabeticDuration=" + diabeticDuration + ", bp=" + bp + ", bpDuration=" + bpDuration + ", cardiac="
-				+ cardiac + ", asthama=" + asthama + ", contactNumber=" + contactNumber + ", emailId=" + emailId
-				+ ", appointmentType=" + appointmentType + ", appointmentStatus=" + appointmentStatus + ", eyeProblem="
-				+ eyeProblem + ", eyeProblemDetails=" + eyeProblemDetails + ", eyeDrops=" + eyeDrops
-				+ ", eyeDropDetails=" + eyeDropDetails + ", rescheduled=" + rescheduled + ", completed=" + completed
-				+ ", active=" + active + ", paymentReceived=" + paymentReceived + ", paymentMethod=" + paymentMethod
-				+ ", drugAllergy=" + drugAllergy + ", drugAllergyDuration=" + drugAllergyDuration
-				+ ", otherMedicalCondition=" + otherMedicalCondition + ", otherMedicalConditionDuration="
-				+ otherMedicalConditionDuration + ", refferedBy=" + refferedBy + ", addressLine1=" + addressLine1
-				+ ", addressLine2=" + addressLine2 + ", pincode=" + pincode + "]";
+				+ ", patientName=" + patientName + ", mrdNumber=" + mrdNumber + ", age=" + age + ", gender=" + gender
+				+ ", diabetic=" + diabetic + ", diabeticDuration=" + diabeticDuration + ", bp=" + bp + ", bpDuration="
+				+ bpDuration + ", cardiac=" + cardiac + ", asthama=" + asthama + ", contactNumber=" + contactNumber
+				+ ", emailId=" + emailId + ", appointmentType=" + appointmentType + ", appointmentStatus="
+				+ appointmentStatus + ", eyeProblem=" + eyeProblem + ", eyeProblemDetails=" + eyeProblemDetails
+				+ ", eyeDrops=" + eyeDrops + ", eyeDropDetails=" + eyeDropDetails + ", rescheduled=" + rescheduled
+				+ ", completed=" + completed + ", active=" + active + ", paymentReceived=" + paymentReceived
+				+ ", paymentMethod=" + paymentMethod + ", drugAllergy=" + drugAllergy + ", drugAllergyDuration="
+				+ drugAllergyDuration + ", otherMedicalCondition=" + otherMedicalCondition
+				+ ", otherMedicalConditionDuration=" + otherMedicalConditionDuration + ", refferedBy=" + refferedBy
+				+ ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2 + ", pincode=" + pincode + "]";
 	}
 
-
-
 	
 	
 
-	
 
-	
-		
-	
-	
 	
 }

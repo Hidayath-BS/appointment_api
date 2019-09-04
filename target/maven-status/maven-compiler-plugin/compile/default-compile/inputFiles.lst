@@ -1,93 +1,93 @@
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\JwtAuthorizationTokenFilter.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsAppointmentsForReview.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsPatientConversation.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\ConsultationRequestRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\service\BusinessRegResponseService.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\PatientQueriesRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsAppointments.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsAvailableTimeSlots.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsQueryResponse.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsPatientQueryRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\payload\PaymentPagePayload.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\JwtTokenUtil.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\RemainderEmailController.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\payload\AppointmentMail.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\repository\CityRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsPatientUsersRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsTimeSlotsRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsReschedules.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\availableSlots\OfflineAppointmentsRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\OtherAppointmentRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsPatientAuthority.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\service\MessageService.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\service\OtpService.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsAppointmentForReviewRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsProceduresRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\security\Ak_state.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\config\WebSecurityConfig.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\TimeSoltsRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsPatientQueries.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\availableSlots\AppointmentRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\DoctorSpecialityRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\security\AuthorityName.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsReferralRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsDoctorSuggestionRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\security\Ak_city.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\JwtAuthenticationRequest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\repository\UserRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsDoctorSuggestion.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\JwtUserFactory.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\availableSlots\AvailableSlotsRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\JwtUser.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\security\Authority.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\service\MovieSaveResponseService.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\PaymetInstamojoRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsHospitalBranch.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\AmsReferralDoctorsRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\JwtAuthenticationEntryPoint.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsTimeSlots.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\OtherAppointments.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\ConsultationRequestResponsesRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\BranchController.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsPatientConversationRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\AmsAdminApplicationApi.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\SurgicalAppointmentsRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsRescheduleRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\OtherAppointmentsRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\Ams_patient_users.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\DoctorsRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\ConsultationRequestResponses.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsPatientAuthorityRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\DashBoardRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\Ams_Procedures.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\repository\Rolerepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\AmsPatientsRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\AmsDoctorAppointmentController.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\AmsServicesRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\controller\AuthenticationException.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\controller\UserRestController.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsAvailableTimeSlotRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsHospitalBranchRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\service\PasswordEncoderCustom.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\RescheduleAppointmentRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\ConsultationRequests.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsQueryResponseRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\security\User.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\controller\ForgotPasswordController.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\service\JwtAuthenticationResponse.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\service\JwtUserDetailsService.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsConsultaionRequestRepo.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\AmsProceduresRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsServicesRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\OtherAppointmentRescheduleController.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\ConsultantResponseRepo.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\AmsReferralDoctors.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\repository\ams\AmsAppointmentsRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\repository\AuthorityRepository.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\contollers\ams\ConsultantRequestRest.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\controller\AuthenticationRestController.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\model\ams\Ams_Services_available.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\controller\MethodProtectedRestController.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\config\EmailConfig.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\controller\RegisterController.java
-E:\MAHAT INNOVATIONS\PROJECTS\BANGALORE NETHRALAYA\APPOINTMENT MANAGEMENT SYSTEM\dev\API\AMS-API2\ams_api\src\main\java\org\zerhusen\security\repository\StateRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsHospitalBranch.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\RemainderEmailController.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\service\MessageService.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\service\JwtAuthenticationResponse.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\ConsultantRequestRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\AmsProceduresRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\Ams_patient_users.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsPatientAuthorityRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsTimeSlotsRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\security\Ak_state.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\controller\AuthenticationRestController.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\RescheduleAppointmentRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\OtherAppointments.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsAppointmentsForReview.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsPatientConversation.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\security\Authority.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\repository\StateRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\security\Ak_city.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\ConsultationRequests.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\config\WebSecurityConfig.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\AmsPatientsRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\repository\UserRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\controller\AuthenticationException.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\PatientQueriesRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\JwtAuthenticationEntryPoint.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\AmsReferralDoctorsRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\OtherAppointmentRescheduleController.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\OtherAppointmentRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\DoctorSpecialityRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsPatientAuthority.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsPatientUsersRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\DoctorsRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsReschedules.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsQueryResponse.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsReferralDoctors.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsPatientQueryRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\config\EmailConfig.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\AmsDoctorAppointmentController.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\availableSlots\AvailableSlotsRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsAppointmentForReviewRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\service\BusinessRegResponseService.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\controller\MethodProtectedRestController.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsPatientQueries.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\JwtUser.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\payload\AppointmentMail.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsAppointmentsRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\repository\Rolerepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\Ams_Services_available.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsHospitalBranchRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\ConsultationRequestResponsesRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\BranchController.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsConsultaionRequestRepo.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\repository\AuthorityRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsProceduresRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsQueryResponseRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsAvailableTimeSlotRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\controller\RegisterController.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\availableSlots\AppointmentRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\service\JwtUserDetailsService.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\SurgicalAppointmentsRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\PaymetInstamojoRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsServicesRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\service\PasswordEncoderCustom.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\Ams_Procedures.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsTimeSlots.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\OtherAppointmentsRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsAppointments.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\service\OtpService.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsRescheduleRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsAvailableTimeSlots.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsDoctorSuggestionRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\ConsultantResponseRepo.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\controller\UserRestController.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\DashBoardRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\JwtAuthenticationRequest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\controller\ForgotPasswordController.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\JwtTokenUtil.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\JwtAuthorizationTokenFilter.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\payload\PaymentPagePayload.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\AmsServicesRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\masters\TimeSoltsRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\AmsAdminApplicationApi.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\security\User.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\ConsultationRequestRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\JwtUserFactory.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\security\AuthorityName.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsPatientConversationRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\ConsultationRequestResponses.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\service\MovieSaveResponseService.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\repository\ams\AmsReferralRepository.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\contollers\ams\availableSlots\OfflineAppointmentsRest.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\model\ams\AmsDoctorSuggestion.java
+F:\MAHATINNOVATIONS\projects\AMS\forgot password\ams_api\src\main\java\org\zerhusen\security\repository\CityRepository.java

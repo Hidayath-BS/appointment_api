@@ -23,21 +23,14 @@ public class AmsDoctorSuggestion {
 	@JoinColumn(name="doctor")
 	private User doctor;
 	
-	@ManyToOne
-	@JoinColumn(name="service")
-	private Ams_Services_available service;
+	@JoinColumn(name="seciality")
+	private String speciality;
 	
 	@Column(name="active")
 	private boolean active;
 
 	public AmsDoctorSuggestion() {
 
-	}
-
-	public AmsDoctorSuggestion(boolean active) {
-		
-
-		this.active = active;
 	}
 
 	public int getId() {
@@ -56,12 +49,12 @@ public class AmsDoctorSuggestion {
 		this.doctor = doctor;
 	}
 
-	public Ams_Services_available getService() {
-		return service;
+	public String getSpeciality() {
+		return speciality;
 	}
 
-	public void setService(Ams_Services_available service) {
-		this.service = service;
+	public void setSpeciality(String speciality) {
+		this.speciality = speciality;
 	}
 
 	public boolean isActive() {
@@ -72,6 +65,18 @@ public class AmsDoctorSuggestion {
 		this.active = active;
 	}
 
+	public AmsDoctorSuggestion(String speciality, boolean active) {
+		super();
+		this.speciality = speciality;
+		this.active = active;
+	}
+
+	@Override
+	public String toString() {
+		return "AmsDoctorSuggestion [id=" + id + ", doctor=" + doctor + ", speciality=" + speciality + ", active="
+				+ active + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,7 +84,7 @@ public class AmsDoctorSuggestion {
 		result = prime * result + (active ? 1231 : 1237);
 		result = prime * result + ((doctor == null) ? 0 : doctor.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((service == null) ? 0 : service.hashCode());
+		result = prime * result + ((speciality == null) ? 0 : speciality.hashCode());
 		return result;
 	}
 
@@ -101,19 +106,15 @@ public class AmsDoctorSuggestion {
 			return false;
 		if (id != other.id)
 			return false;
-		if (service == null) {
-			if (other.service != null)
+		if (speciality == null) {
+			if (other.speciality != null)
 				return false;
-		} else if (!service.equals(other.service))
+		} else if (!speciality.equals(other.speciality))
 			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "AmsDoctorSuggestion [id=" + id + ", doctor=" + doctor + ", service=" + service + ", active=" + active
-				+ "]";
-	}
+	
 	
 	
 
