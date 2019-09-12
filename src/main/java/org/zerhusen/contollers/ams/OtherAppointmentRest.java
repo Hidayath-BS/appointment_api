@@ -56,9 +56,6 @@ public class OtherAppointmentRest {
 	@Autowired
 	public AmsPatientUsersRepository userrepo;
 	
-	
-	
-	
 	@Value("${jwt.header}")
 	private String tokenHeader;
 
@@ -104,11 +101,20 @@ public class OtherAppointmentRest {
 		return otherapprepo.findAll().stream().filter(i->i.isActive()== true && i.getPatient() != null && i.getPatient().equals(user)).collect(Collectors.toList());
 	}
 	
-	@GetMapping("/getOtherApp/{date}")
-	public Iterable<OtherAppointments> getAllOtherAppointments(@PathVariable("date") String date)throws JSONException
+	@GetMapping("/getOtherApp/{id}")
+	public Iterable<OtherAppointments> getAllOtherAppointments(@PathVariable("id") int id)throws JSONException
 	{
+		AmsHospitalBranch branch = branchRepo.findById(id);
+		LocalDate entrydate = LocalDate.now();
+		return otherapprepo.findAll().stream().filter(i->(i.isActive()==true)&&(i.getAppointmentDate().equals(entrydate)||i.getAppointmentDate().isAfter(entrydate))&& i.getBranch()==branch).collect(Collectors.toList());
+	}
+	
+	@GetMapping("/getSurgApp/{date}/{id}")
+	public Iterable<OtherAppointments> getAllSurgicalAppointments(@PathVariable("date") String date, @PathVariable("id") int id)throws JSONException
+	{
+		AmsHospitalBranch branch = branchRepo.findById(id);
 		LocalDate entrydate = LocalDate.parse(date);
-		return otherapprepo.findAll().stream().filter(i->(i.isActive()==true)&&(i.getAppointmentDate().equals(entrydate))).collect(Collectors.toList());
+		return otherapprepo.findAll().stream().filter(i->(i.isActive()==true)&&(i.getAppointmentDate().equals(entrydate))&& i.getBranch()==branch).collect(Collectors.toList());
 	}
 	
 	@PutMapping("/deleteAppointment")
@@ -176,9 +182,11 @@ public class OtherAppointmentRest {
 		}
 		
 		if(procedure != null && branch != null) {
-			OtherAppointments otherAppointment = new OtherAppointments(json.getString("fullName"), json.getString("emailId") , json.getString("mobileNumber"), 
-					json.getDouble("age"), (byte) 1, json.getString("mrdNumber"), appointmentDate, appointmentTime, true);
 			
+
+			OtherAppointments otherAppointment = new OtherAppointments(json.getString("fullName"), json.getString("emailId") ,  json.getString("mobileNumber"), json.getDouble("age"), (byte) 1, json.getString("mrdNumber"), appointmentDate, appointmentTime, true, (byte) 0, false, json.getString("remarks"));
+			
+	
 			otherAppointment.setProcedure(procedure);
 			otherAppointment.setBranch(branch);
 			
