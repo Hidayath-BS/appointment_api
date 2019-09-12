@@ -30,9 +30,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerhusen.config.EmailConfig;
 import org.zerhusen.model.ams.AmsAppointments;
+import org.zerhusen.model.ams.AmsHospitalBranch;
 import org.zerhusen.model.ams.OtherAppointments;
 import org.zerhusen.model.security.User;
 import org.zerhusen.repository.ams.AmsAppointmentsRepository;
+import org.zerhusen.repository.ams.AmsHospitalBranchRepository;
 import org.zerhusen.repository.ams.OtherAppointmentsRepository;
 import org.zerhusen.security.JwtTokenUtil;
 import org.zerhusen.security.repository.UserRepository;
@@ -63,10 +65,14 @@ public class SurgicalAppointmentsRest {
 	@Autowired
 	private EmailConfig emailConfig;
 	
-	@GetMapping("/oterAppointmentsPending")
-	public Iterable<OtherAppointments> oterAppointmentsPending(){
+	@Autowired
+	private AmsHospitalBranchRepository branchRepo;
+	
+	@GetMapping("/oterAppointmentsPending/{id}")
+	public Iterable<OtherAppointments> oterAppointmentsPending(@PathVariable("id") int id){
 		LocalDate date =LocalDate.now();
-		return otherAppointmentsRepo.findAll().stream().filter(i->i.getAppointmentDate().isBefore(date) && i.isCompleted() == false && i.isActive() == true).collect(Collectors.toList());
+		AmsHospitalBranch branch = branchRepo.findById(id);
+		return otherAppointmentsRepo.findAll().stream().filter(i->i.getAppointmentDate().isBefore(date) && i.isCompleted() == false && i.isActive() == true && i.getBranch()==branch).collect(Collectors.toList());
 	}
 	
 	@Scheduled(cron="0 25 10 * * *")

@@ -59,10 +59,10 @@ public class AvailableSlotsRest {
 		LocalTime localTime = LocalTime.now();
 		LocalDate currDate = LocalDate.now();
 		if(localDate.equals(currDate)){
-		return availSlotRepo.findAll().stream().filter(i-> i.getDate().equals(localDate) && i.isActive()==true && i.getSlot().getStartTime().isAfter(localTime)).collect(Collectors.toList());
+		return availSlotRepo.findAll().stream().filter(i-> i.getDate().equals(localDate) && i.isActive()==true && i.getSlot().getStartTime().isAfter(localTime) && i.getWalkinCount()==0).collect(Collectors.toList());
 		}
 		else{
-			return availSlotRepo.findAll().stream().filter(i-> i.getDate().equals(localDate) && i.isActive()==true ).collect(Collectors.toList());
+			return availSlotRepo.findAll().stream().filter(i-> i.getDate().equals(localDate) && i.isActive()==true && i.getWalkinCount()==0 ).collect(Collectors.toList());
 		}
 	}
 	

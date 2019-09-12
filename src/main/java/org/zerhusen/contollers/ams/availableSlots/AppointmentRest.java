@@ -252,10 +252,20 @@ public class AppointmentRest {
 
 
     	// get list of review Date
-    	@GetMapping("/ReviewDateList/{date}")
-    	public Iterable<AmsAppointmentsForReview> getAll(@PathVariable("date") String date){
+    	@GetMapping("/getFutureReviewDateListBranchWise/{id}")
+    	public Iterable<AmsAppointmentsForReview> getReviewDateBranchWise(@PathVariable("id") int id)
+    	{
+    		LocalDate reviewdate = LocalDate.now();
+    		AmsHospitalBranch branch = branchRepo.findById(id);
+    	return forReviewRepo.findAll().stream().filter(i->(i.isActive()==true) && (i.getReviewDate().equals(reviewdate) || i.getReviewDate().isAfter(reviewdate)) && (i.getAppointment().getSlot().getBranch() == branch)).collect(Collectors.toList());
+    	}
+    	
+    	@GetMapping("/getReviewDateListBranchWise/{date}/{id}")
+    	public Iterable<AmsAppointmentsForReview> getAllReviewDates(@PathVariable("id") int id,@PathVariable("date") String date)
+    	{
     		LocalDate reviewdate = LocalDate.parse(date);
-    	return forReviewRepo.findAll().stream().filter(i->i.isActive()==true && i.getReviewDate().equals(reviewdate)).collect(Collectors.toList());
+    		AmsHospitalBranch branch = branchRepo.findById(id);
+    	return forReviewRepo.findAll().stream().filter(i->(i.isActive()==true) && (i.getReviewDate().equals(reviewdate)) && (i.getAppointment().getSlot().getBranch() == branch)).collect(Collectors.toList());
     	}
 
     	//delete for review date
@@ -315,6 +325,7 @@ public class AppointmentRest {
     	}
     	return appoint;
     	}
+    	
     	@PostMapping("/getBetweenDateAppiontment")
     	public ResponseEntity<?> getBetweenDateAppiontment(@RequestBody String data) throws JSONException{
     		JSONObject ob = new JSONObject(data);

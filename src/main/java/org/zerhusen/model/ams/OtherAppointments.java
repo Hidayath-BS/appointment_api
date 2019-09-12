@@ -80,6 +80,9 @@ public class OtherAppointments {
 	
 	@Column(name="completed")
 	private boolean completed;
+	
+	@Column(name="remarks")
+	private String remarks;
 
 
 	public OtherAppointments() {
@@ -121,28 +124,6 @@ public class OtherAppointments {
 	public void setRescheduled(byte rescheduled) {
 		this.rescheduled = rescheduled;
 	}
-
-
-
-
-
-
-	public OtherAppointments(String patientName, String email, String mobileNumber, Double age, byte status,
-			String mrdNumber, LocalDate appointmentDate, LocalTime appointmentTime, boolean active) {
-		
-		this.patientName = patientName;
-		this.email = email;
-		this.mobileNumber = mobileNumber;
-		this.age = age;
-		this.status = status;
-		this.mrdNumber = mrdNumber;
-		this.appointmentDate = appointmentDate;
-		this.appointmentTime = appointmentTime;
-		this.active = active;
-		
-	}
-
-
 
 
 
@@ -298,6 +279,40 @@ public class OtherAppointments {
 
 
 
+	public String getRemarks() {
+		return remarks;
+	}
+
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+
+
+
+
+
+	public OtherAppointments(String patientName, String email, String mobileNumber, Double age, byte status,
+			String mrdNumber, LocalDate appointmentDate, LocalTime appointmentTime, boolean active, byte rescheduled,
+			boolean completed, String remarks) {
+		super();
+		this.patientName = patientName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.age = age;
+		this.status = status;
+		this.mrdNumber = mrdNumber;
+		this.appointmentDate = appointmentDate;
+		this.appointmentTime = appointmentTime;
+		this.active = active;
+		this.rescheduled = rescheduled;
+		this.completed = completed;
+		this.remarks = remarks;
+	}
+
+
+
 
 
 
@@ -310,6 +325,7 @@ public class OtherAppointments {
 		result = prime * result + ((appointmentDate == null) ? 0 : appointmentDate.hashCode());
 		result = prime * result + ((appointmentTime == null) ? 0 : appointmentTime.hashCode());
 		result = prime * result + ((branch == null) ? 0 : branch.hashCode());
+		result = prime * result + (completed ? 1231 : 1237);
 		result = prime * result + ((doctors == null) ? 0 : doctors.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + id;
@@ -318,6 +334,7 @@ public class OtherAppointments {
 		result = prime * result + ((patient == null) ? 0 : patient.hashCode());
 		result = prime * result + ((patientName == null) ? 0 : patientName.hashCode());
 		result = prime * result + ((procedure == null) ? 0 : procedure.hashCode());
+		result = prime * result + ((remarks == null) ? 0 : remarks.hashCode());
 		result = prime * result + rescheduled;
 		result = prime * result + status;
 		return result;
@@ -359,6 +376,8 @@ public class OtherAppointments {
 				return false;
 		} else if (!branch.equals(other.branch))
 			return false;
+		if (completed != other.completed)
+			return false;
 		if (doctors == null) {
 			if (other.doctors != null)
 				return false;
@@ -396,6 +415,11 @@ public class OtherAppointments {
 				return false;
 		} else if (!procedure.equals(other.procedure))
 			return false;
+		if (remarks == null) {
+			if (other.remarks != null)
+				return false;
+		} else if (!remarks.equals(other.remarks))
+			return false;
 		if (rescheduled != other.rescheduled)
 			return false;
 		if (status != other.status)
@@ -414,18 +438,11 @@ public class OtherAppointments {
 				+ mobileNumber + ", age=" + age + ", status=" + status + ", mrdNumber=" + mrdNumber
 				+ ", appointmentDate=" + appointmentDate + ", appointmentTime=" + appointmentTime + ", active=" + active
 				+ ", rescheduled=" + rescheduled + ", procedure=" + procedure + ", patient=" + patient + ", branch="
-				+ branch + ", doctors=" + doctors + "]";
+				+ branch + ", doctors=" + doctors + ", completed=" + completed + ", remarks=" + remarks + "]";
 	}
 
 
 
-
-
-
-	
-
-		
-	
 	
 	
 	
